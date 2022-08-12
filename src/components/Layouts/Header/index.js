@@ -461,16 +461,45 @@ const Header = (props) => {
                     </Box>
                 </> :
                 <Box sx={{width : '100%',display : 'flex', justifyContent : 'space-around', alignItems : 'center'}}>
-                    <IconButton onClick={() => handleClose(true)}>
-                        <MenuIcon />
-                    </IconButton>
-                    <SearchIcon style={{ fill: "#6F767E" }} />
-                    <Badge color="error" variant='dot'>
-                        <MessageIcon />
-                    </Badge>
-                    <Badge color="error" variant='dot'>
-                        <NotificationsIcon/>
-                    </Badge>
+                    {!searchPopOver ?
+                        <>
+                            <IconButton onClick={() => handleClose(true)}>
+                                <MenuIcon />
+                            </IconButton>
+                            <SearchIcon
+                                ref={anchorRefSearch}
+                                onClick={handleOpenSearchPopOver}
+                                style={{ fill: "#6F767E" }}
+                            />
+                            <Badge color="error" variant='dot'>
+                                <MessageIcon />
+                            </Badge>
+                            <Badge color="error" variant='dot'>
+                                <NotificationsIcon/>
+                            </Badge>
+                        </> :
+                        <TextField
+                            id="search-bar"
+                            className="text"
+                            onInput={(e) => {
+                                setSearchText(e.target.value);
+                            }}
+                            InputProps={{
+                                startAdornment: <InputAdornment position="start"> <SearchIcon style={{ fill: "#6F767E" }} /> </InputAdornment>,
+                                endAdornment: <InputAdornment position="end">
+                                        <Button variant='contained' sx={{background : theme.palette.common.white, "& path" : {fill : theme.palette.common.black}}}>
+                                            { SearchADRIcon}
+                                        </Button>
+                                    </InputAdornment>,
+                            }}
+                            variant="outlined"
+                            placeholder="Search or type a command"
+                            size="small"
+                            ref={anchorRefSearch}
+                            onClick={handleOpenSearchPopOver}
+                            sx={{marginBottom : '0px', "& .MuiOutlinedInput-notchedOutline" : {border : 'none'}, "&. Mui-focused" : {border : 'none'}}}
+                        />
+                    }
                 </Box>
             }
             <Drawer
