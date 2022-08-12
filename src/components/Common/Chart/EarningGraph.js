@@ -90,6 +90,7 @@ const EarningGraph = (props) => {
                 dataLabels: {
                     position: 'top', // top, center, bottom
                 },
+                distributed: true
             }
         },
         dataLabels: {
