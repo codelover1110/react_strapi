@@ -11,9 +11,10 @@ import palette from './palette';
 
 // ----------------------------------------------------------------------
 const themeMode = getItem('userThemeMode');
-if (themeMode === null) {
-  setItem('userThemeMode', 'light');
-}
+console.log("dsasf",getItem('userThemeMode'));
+
+setItem('userThemeMode', 'light');
+
 const breakpoints = {
   values: {
     xs: 0,
@@ -28,6 +29,7 @@ const ColorModeContext = createContext({ toggleColorMode: () => {} });
 
 const ThemeConfig = ({ children }) => {
   const curTheme = getItem('userThemeMode');
+  console.log(curTheme);
   const [mode, setMode] = useState(curTheme === 'light' ? 'light' : 'dark');
   const colorMode = useMemo(
     () => ({

@@ -12,6 +12,9 @@ export const useStyles = makeStyles((theme) => ({
         },
         ['@media (max-width : 325px)'] : {
             padding : 5
+        },
+        "& .apexcharts-tooltip" : {
+            color: 'black',
         }
     },
     titleDiv : {

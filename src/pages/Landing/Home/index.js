@@ -23,6 +23,11 @@ const useStyles = makeStyles((theme) => ({
         ['@media (max-width:900px)'] : {
             padding : '20px'
         }
+    },
+    dashboard : {
+        fontSize : '40px',
+        color : theme.palette.common.black,
+        fontWeight : 'bold'
     }
 }))
 const Home = () => {
@@ -31,7 +36,7 @@ const Home = () => {
     
     return (
         <Box className={classes.root}>
-            <Box sx={{fontSize : '40px', fontWeight : 'bold'}}>
+            <Box className={classes.dashboard}>
                 Dashboard
             </Box>
             <Grid container spacing={2}>

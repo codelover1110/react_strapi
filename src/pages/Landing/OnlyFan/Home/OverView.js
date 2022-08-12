@@ -19,6 +19,7 @@ import {
 } from '@mui/material' ;
 
 import { makeStyles } from '@mui/styles' ;
+import CustomersGraph from "../../../../components/Common/Chart/CustomersGraph";
 
 const useStyles = makeStyles((theme) => ({
     root : {
@@ -206,7 +207,8 @@ const OverView = () => {
                         </Grid>
                     </Grid>
                 </Box>
-                        <StatisticsGraph />
+                
+                <CustomersGraph />
             </Paper>
         </Box>
     );

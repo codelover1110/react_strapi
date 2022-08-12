@@ -24,6 +24,7 @@ import {
 } from '@mui/material' ;
 
 import { makeStyles } from '@mui/styles' ;
+import CustomersGraph from "../../../components/Common/Chart/CustomersGraph";
 
 const useStyles = makeStyles((theme) => ({
     root : {
@@ -46,7 +47,10 @@ const useStyles = makeStyles((theme) => ({
             textTransform : 'unset',
             borderRadius : '12px',
             padding : '10px',
-        }
+        },
+        // "& apexcharts-tooltip" : {
+        //     color : 'red',
+        // }
     },
     top : {
         width : '100%',
@@ -232,7 +236,7 @@ const OverView = () => {
                         </Box>
                     </Box>
                     :
-                    <StatisticsGraph />
+                    <CustomersGraph />
                 }
             </Paper>
         </Box>

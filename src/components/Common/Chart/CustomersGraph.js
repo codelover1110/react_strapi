@@ -8,15 +8,16 @@ import PropTypes from 'prop-types' ;
 import ReactApexChart from 'react-apexcharts' ;
 
 import {
-    Box
+    Box, colors
 } from '@mui/material' ;
 
 import { useStyles } from './StylesDiv/StatisticsGraph.styles';
 import { useTheme } from '@mui/styles';
 
 const CustomersGraph = (props) => {
-    const classes = useStyles() ;
     const theme = useTheme() ;
+    const classes = useStyles() ;
+   
 
     const {
     } = props ;
@@ -29,7 +30,7 @@ const CustomersGraph = (props) => {
         {
             name: 'Subscriptions',
             type: 'line',
-            data: [1000, 14850, 1900, 1600, 1200, 700]
+            data: [1000, 650, 1485, 990, 1900, 1200, 1600, 1050, 1170, 1200, 1900, 700]
         },
     ] ;
 
@@ -94,7 +95,7 @@ const CustomersGraph = (props) => {
                 stops: [0, 100, 100, 100]
             }
         },
-        labels: ['Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep'],
+        labels: ['Apr', '', 'May', '', 'Jun', '', 'Jul', '', 'Aug', '', '', 'Sep'],
 
         markers: {
             size: 0
@@ -122,13 +123,17 @@ const CustomersGraph = (props) => {
             intersect: false,
             y: {
                 formatter: function (y) {
-                if (typeof y !== "undefined") {
-                    return y.toFixed(0) + " points";
+                    if (typeof y !== "undefined") {
+                        return y.toFixed(0) + " points";
+                    }
+                    return y;
                 }
-                return y;
-            
-                }
-            }
+            },
+            style: {
+                fontSize: '20px',
+                colors: ['red'],
+                background : 'red'
+            },
         }
     } ;
     
@@ -137,7 +142,6 @@ const CustomersGraph = (props) => {
 
     React.useEffect(() => {
         setChartCtrl(chartCtrl.current);
-        // console.log(width, height);
     }, []);
 
     return (

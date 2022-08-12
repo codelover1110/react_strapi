@@ -1,4 +1,5 @@
-import { makeStyles } from "@mui/styles";
+import { makeStyles, useTheme } from "@mui/styles";
+
 
 export const useStyles = makeStyles((theme) => ({
     root : {
@@ -12,6 +13,9 @@ export const useStyles = makeStyles((theme) => ({
         },
         ['@media (max-width : 325px)'] : {
             padding : 5
+        },
+        "& .apexcharts-tooltip" : {
+            color: 'black',
         }
     },
     titleDiv : {
@@ -25,6 +29,6 @@ export const useStyles = makeStyles((theme) => ({
     chartDiv : {
         border : '1px solid' +  theme.palette.success,
         borderRadius : 10,
-        padding: 10
+        padding: 10,
     }
 }))

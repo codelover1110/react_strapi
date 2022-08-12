@@ -1,9 +1,4 @@
 import React from "react";
-import Popover_Image from '../../../assets/Home/Popover.png';
-
-import FilterIcon from '@mui/icons-material/Filter';
-import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
-import CloseIcon from '@mui/icons-material/Close';
 
 import {
     Box, List, ListItem, Popover

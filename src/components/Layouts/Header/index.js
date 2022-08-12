@@ -1,13 +1,16 @@
 
-import React from 'react';
+import React, { useContext } from 'react';
 import { useState } from 'react';
 
 import { connect } from 'react-redux' ;
 import { useNavigate } from 'react-router-dom';
 
+import { ColorModeContext } from '../../../utils/theme';
+import { getItem, setItem } from '../../../utils/helper';
 import Avatar_Image from '../../../assets/Home/Avatar.png';
-import { HomeIcon, ProductsIcon, CustomersIcon, ShopIcon, SearchADRIcon, LogoLightIcon, LogoDarkIcon } from '../../Common/SvgStatic';
+import { HomeIcon, ProductsIcon, CustomersIcon, ShopIcon, SearchADRIcon, LogoLightIcon, LogoDarkIcon, AffiliateIcon, AnalyticsIcon, ExploreIcon, UpgradeIcon } from '../../Common/SvgStatic';
 import SearchPopover from './SearchPopover';
+import ProfilePopover from './ProfilePopover';
 import clsx from 'clsx';
 
 import { makeStyles } from '@mui/styles';
@@ -19,12 +22,14 @@ import SearchIcon from '@mui/icons-material/Search';
 import MenuIcon from '@mui/icons-material/Menu';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import CloseIcon from '@mui/icons-material/Close';
+import HelpOutlineIcon from '@mui/icons-material/HelpOutline';
+import LightModeIcon from '@mui/icons-material/LightMode';
+import DarkModeOutlinedIcon from '@mui/icons-material/DarkModeOutlined';
 
 import {
     Badge,
     Box, Button, Drawer, IconButton, List, ListItem, TextField, Typography, useMediaQuery, Accordion, AccordionSummary, AccordionDetails, InputAdornment, Popover, popoverClasses, useTheme
 } from '@mui/material' ;
-import ProfilePopover from './ProfilePopover';
   
 
 const useStyles = makeStyles((theme) => ({
@@ -88,8 +93,10 @@ const useStyles = makeStyles((theme) => ({
             display : 'flex',
             alignItems : 'center',
             padding : '20px',
-            paddingLeft : '0px',
             cursor : 'pointer',
+        },
+        "& .MuiAccordionSummary-root" : {
+            padding : '20px',
         },
 
         "& svg" : {
@@ -101,7 +108,6 @@ const useStyles = makeStyles((theme) => ({
     },
     menuDiv: {
         height: '100%',
-        padding : '0px 24px',
         "& a": {
             textDecoration: 'none ',
             color: 'white',
@@ -130,6 +136,15 @@ const useStyles = makeStyles((theme) => ({
         border: '2px solid #CABDFF',
         borderRadius : '50%',
         marginRight : '10px',
+    },
+    paletteMode : {
+        fontWeight: 'bold',
+        padding: '8px 17px',
+        cursor : 'pointer',
+        "&:hover" : {
+            boxShadow: '0px 4px 8px -4px rgba(0, 0, 0, 0.25), inset 0px -1px 1px rgba(0, 0, 0, 0.04), inset 0px 2px 0px rgba(255, 255, 255, 0.25)',
+            borderRadius: '32px',
+        }
     }
 })) ;
 
@@ -166,6 +181,17 @@ const menuList = [
     },
 ]
 
+const homeSubMenu = [
+    {
+        label : 'OnlyFans Home',
+        link : '/home/onlyfan'
+    },
+    {
+        label : 'OnlyFans Client View',
+        link : '/home/onlyfan/client'
+    },
+]
+
 const productSubMenu = [
     {
         label : 'Dashboard',
@@ -191,6 +217,7 @@ const Header = (props) => {
     const navigate = useNavigate();
     const match = useMediaQuery('(min-width : 750px)');
     const theme = useTheme();
+    const colorMode = useContext(ColorModeContext);
     const anchorRefSearch = React.useRef(null) ;
     const anchorRefProfile = React.useRef(null) ;
 
@@ -224,6 +251,16 @@ const Header = (props) => {
         setProfilePopOver(false);
     }
 
+    const themeModeHandleClick = (mode) => {
+        const themeMode = getItem('userThemeMode');
+        console.log(mode, getItem('userThemeMode'));
+        if(mode !== themeMode){
+            colorMode.toggleColorMode();
+        }
+        setItem('userThemeMode', mode);
+        console.log(mode, getItem('userThemeMode'));
+    };
+
     const list = () => (
         <Box
             sx={{width : 'auto'}}
@@ -238,12 +275,13 @@ const Header = (props) => {
                     
                     { theme.palette.mode === 'light' ? LogoLightIcon : LogoDarkIcon } 
                 </ListItem>
-                <Box sx={{padding : '0px 10px'}}>
+
+                <Box sx={{padding : '0px 10px', mb : 10}}>
                 {
                     menuList.map((element, index) => {
                         return(
-                            (element.label === "Home" || element.label === "Shop" || element.label ==="Promote") ?
-                            <ListItem key={index} onClick={() => handleMenuChange(element)} sx={{"&:hover" : {background : ' #EFEFEF'}}}>
+                            (element.label === "Shop" || element.label ==="Promote") ?
+                            <ListItem key={index} onClick={() => handleMenuChange(element)} sx={{"&:hover" : {background : theme.palette.grey.A200}}}>
                                 {element.icon}
                                 {element.label}
                             </ListItem> :
@@ -252,7 +290,7 @@ const Header = (props) => {
                                     expandIcon={<ExpandMoreIcon />}
                                     aria-controls="panel1a-content"
                                     id="panel1a-header"
-                                    sx={{"&:hover" : {background : ' #EFEFEF'}}}
+                                    sx={{"&:hover" : {background : theme.palette.grey.A200}}}
                                 >
                                 <Box>
                                     {element.icon}
@@ -262,10 +300,20 @@ const Header = (props) => {
                                 <AccordionDetails>
                                 <Box>
                                     {
+                                        element.label === "Home" &&
+                                        homeSubMenu.map((row, index) => {
+                                            return(
+                                                <Box key={index} onClick={() => handleMenuChange(row)} sx={{px : 2, py : 1, cursor : 'pointer', "&:hover" : {background : theme.palette.grey.A200}}}>
+                                                    {row.label}
+                                                </Box>
+                                            )
+                                        })
+                                    }
+                                    {
                                         element.label === "Products" &&
                                         productSubMenu.map((row, index) => {
                                             return(
-                                                <Box key={index} onClick={() => handleMenuChange(row)} sx={{px : 2, py : 1, cursor : 'pointer', "&:hover" : {background : ' #EFEFEF'}}}>
+                                                <Box key={index} onClick={() => handleMenuChange(row)} sx={{px : 2, py : 1, cursor : 'pointer', "&:hover" : {background : theme.palette.grey.A200}}}>
                                                     {row.label}
                                                 </Box>
                                             )
@@ -277,6 +325,88 @@ const Header = (props) => {
                         )
                     })
                 }
+                </Box>
+
+                <Accordion>
+                    <AccordionSummary
+                        expandIcon={<ExpandMoreIcon />}
+                        aria-controls="panel1a-content"
+                        id="panel1a-header"
+                        sx={{"&:hover" : {background : theme.palette.grey.A200}}}
+                    >
+                    <Box sx={{display : 'flex', alignItems : 'center'}}>
+                        <Box component={'img'} src={Avatar_Image} sx={{mr : 2}}/>
+                        <Box>
+                            <Box>
+                                Tran Mau Tri Tam
+                            </Box>
+                            <Box>
+                                Visual Designer
+                            </Box>
+                        </Box>
+                    </Box>
+                    </AccordionSummary>
+                    <AccordionDetails>
+                        <List>
+                            <ListItem>
+                                Profile
+                            </ListItem>
+                            <ListItem>
+                                Edit profile
+                            </ListItem>
+                            <ListItem sx={{fontWeight : 'bold', mt : '20px'}}>
+                                { AnalyticsIcon }
+                                Analytics
+                            </ListItem>
+                            <ListItem>
+                                { AffiliateIcon }
+                                Affiliate center
+                            </ListItem>
+                            <ListItem>
+                                { ExploreIcon }
+                                Explore authors
+                            </ListItem>
+                            <ListItem sx={{color : '#8E59FF', mt : '20px'}}>
+                                { UpgradeIcon }
+                                Upgrate to Pro
+                            </ListItem>
+                            <ListItem sx={{mt : '20px'}}>
+                                Account settings
+                            </ListItem>
+                            <ListItem>
+                                Log out
+                            </ListItem>
+                        </List>
+                    </AccordionDetails>
+                </Accordion>
+                
+                <Box sx={{display : 'flex', justifyContent : 'space-between',padding : '10px 30px', mt : 2}}>
+                    <Box sx={{display : 'flex', mb : 2}}>
+                        <HelpOutlineIcon sx={{mr : 1}}/>
+                            <Box>
+                                Help & getting started
+                            </Box>
+                    </Box>
+                    <Box 
+                        sx={{
+                            width : '24px', height : '24px',
+                            display : 'flex', justifyContent : 'center', alignItems : 'center', fontWeight : 'bold',
+                            color : '#1A1D1F', background : '#CABDFF', borderRadius : '6px'
+                        }}
+                    >
+                        8
+                    </Box>
+                </Box>
+                
+                <Box sx={{display : 'flex', justifyContent : 'center'}}>
+                    <Box onClick={() => themeModeHandleClick('dark')} className={classes.paletteMode}>
+                        <LightModeIcon sx={{ ml: 1 }} />
+                        Light
+                    </Box>
+                    <Box onClick={() => themeModeHandleClick('light')} className={classes.paletteMode}>
+                        <DarkModeOutlinedIcon sx={{ ml: 1 }} />
+                        Dark
+                    </Box>
                 </Box>
             </List>
         </Box>

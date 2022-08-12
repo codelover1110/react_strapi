@@ -73,7 +73,7 @@ const ProductView = () => {
                             value={type}
                             onChange={(e) => handleChange(e)}
                         >
-                            <MenuItem value={1}> All time </MenuItem>
+                            <MenuItem value={1}> Last 7 days </MenuItem>
                             <MenuItem value={10}>Ten</MenuItem>
                             <MenuItem value={20}>Twenty</MenuItem>
                             <MenuItem value={30}>Thirty</MenuItem>
