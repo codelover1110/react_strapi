@@ -4,7 +4,7 @@ const BLACK = '#1A1D1F';
 const WHITE = '#FCFCFC';
 const PRIMARY = {
   light: '#FFF',
-  main: '#FCFCFC',
+  main: '#F4F4F4',
   dark: darken('#00B0F0', 0.2),
   contrastText: WHITE,
 };

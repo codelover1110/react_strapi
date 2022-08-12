@@ -11,9 +11,10 @@ import { getItem, setItem } from '../../../utils/helper';
 import { makeStyles } from '@mui/styles';
 
 import Brightness4Icon from '@mui/icons-material/Brightness4';
-import LightModeOutlinedIcon from '@mui/icons-material/LightModeOutlined';
 import HelpOutlineIcon from '@mui/icons-material/HelpOutline';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
+import LightModeIcon from '@mui/icons-material/LightMode';
+import DarkModeOutlinedIcon from '@mui/icons-material/DarkModeOutlined';
 
 import {
     Box, Button, Divider, List, ListItem , MenuItem, useTheme, Accordion, AccordionSummary, AccordionDetails, useMediaQuery
@@ -53,6 +54,15 @@ const useStyles = makeStyles((theme) => ({
     home : {
         "& path" : {
             fill : theme.palette.common.black
+        }
+    },
+    paletteMode : {
+        fontWeight: 'bold',
+        padding: '8px 17px',
+        cursor : 'pointer',
+        "&:hover" : {
+            boxShadow: '0px 4px 8px -4px rgba(0, 0, 0, 0.25), inset 0px -1px 1px rgba(0, 0, 0, 0.04), inset 0px 2px 0px rgba(255, 255, 255, 0.25)',
+            borderRadius: '32px',
         }
     }
 })) ;
@@ -131,12 +141,18 @@ const NavBar = (props) => {
         navigate(element.link)
     }
 
-    const themeModeHandleClick = () => {
-        colorMode.toggleColorMode();
+    const themeModeHandleClick = (mode) => {
         const themeMode = getItem('userThemeMode');
-        setItem('userThemeMode', themeMode === 'light' ? 'dark' : 'light');
+        if(mode !== themeMode){
+            colorMode.toggleColorMode();
+        }
+        setItem('userThemeMode', mode);
     };
 
+    useEffect(() => {
+        setItem('userThemeMode', 'light');
+    }, [])
+    
     return (
         <Box className={classes.root}>
             <List>
@@ -187,7 +203,7 @@ const NavBar = (props) => {
                 <Divider />
 
                 <Box sx={{display : 'flex', justifyContent : match1200 ? 'space-between' : 'center', mt : 2}}>
-                    <Box sx={{display : 'flex'}}>
+                    <Box sx={{display : 'flex', mb : 2}}>
                         <HelpOutlineIcon sx={{mr : 1}}/>
                         {
                             match1200 &&
@@ -209,16 +225,16 @@ const NavBar = (props) => {
                         </Box>
                     }
                 </Box>
-                <MenuItem onClick={() => themeModeHandleClick()} sx={{ fontWeight: 'bold', padding: '8px 17px' }}>
-                {
-                    match1200 && ( <Box> {theme.palette.mode === 'light' ? 'Dark' : 'Light'} Theme</Box>)
-                }
-                {theme.palette.mode === 'dark' ? (
-                    <Brightness4Icon sx={{ ml: 1 }} />
-                ) : (
-                    <LightModeOutlinedIcon sx={{ ml: 1 }} />
-                )}
-                </MenuItem>
+                <Box sx={{display : 'flex'}}>
+                    <Box onClick={() => themeModeHandleClick('light')} className={classes.paletteMode}>
+                        <LightModeIcon sx={{ ml: 1 }} />
+                        Light
+                    </Box>
+                    <Box onClick={() => themeModeHandleClick('dark')} className={classes.paletteMode}>
+                        <DarkModeOutlinedIcon sx={{ ml: 1 }} />
+                        Dark
+                    </Box>
+                </Box>
             </Box>
         </Box>
     );

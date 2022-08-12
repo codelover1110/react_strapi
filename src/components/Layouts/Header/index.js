@@ -42,14 +42,6 @@ const useStyles = makeStyles((theme) => ({
                 padding : '5px 16px'
             }
         },
-        "& svg" : {
-            width : '25px',
-            height : '25px',
-            marginLeft : '30px',
-            ['@media (max-width:750px)'] : {
-                marginLeft : 0
-            }
-        },
         "& .MuiPaper-root" : {
             width : '360px',
         }
@@ -72,6 +64,14 @@ const useStyles = makeStyles((theme) => ({
             padding : '10px',
             "& svg" : {
                 marginLeft : '0px'
+            }
+        },
+        "& svg" : {
+            width : '25px',
+            height : '25px',
+            marginLeft : '30px',
+            ['@media (max-width:750px)'] : {
+                marginLeft : 0
             }
         },
     },
@@ -297,8 +297,7 @@ const Header = (props) => {
                             InputProps={{
                                 startAdornment: <InputAdornment position="start"> <SearchIcon style={{ fill: "#6F767E" }} /> </InputAdornment>,
                                 endAdornment: <InputAdornment position="end">
-                                        <Button variant='contained' sx={{background : theme.palette.mode === 'dark' ? '#1A1D1F !important' : '#F4F4F4 !important', "& path" : {fill : theme.palette.common.black}}}>
-                                            
+                                        <Button variant='contained' sx={{background : theme.palette.common.white, "& path" : {fill : theme.palette.common.black}}}>
                                             { SearchADRIcon}
                                         </Button>
                                     </InputAdornment>,

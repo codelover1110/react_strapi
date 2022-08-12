@@ -105,7 +105,7 @@ const Input = (theme) => ({
   MuiOutlinedInput: {
     styleOverrides: {
       root: {
-        background: theme.palette.common.white,
+        background: theme.palette.primary.main,
         fontSize: theme.typography.htmlFontSize,
         fontWeight: theme.typography.fontWeightMedium,
         '& legend': {
