@@ -256,6 +256,7 @@ const NavBar = (props) => {
 
 NavBar.propTypes = {
 }
+
 const mapStateToProps = state => ({
 })
 

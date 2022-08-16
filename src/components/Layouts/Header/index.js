@@ -1,5 +1,5 @@
 
-import React, { useContext } from 'react';
+import React, { useContext, useRef } from 'react';
 import { useState } from 'react';
 
 import { connect } from 'react-redux' ;
@@ -11,6 +11,7 @@ import Avatar_Image from '../../../assets/Home/Avatar.png';
 import { HomeIcon, ProductsIcon, CustomersIcon, ShopIcon, SearchADRIcon, LogoLightIcon, LogoDarkIcon, AffiliateIcon, AnalyticsIcon, ExploreIcon, UpgradeIcon } from '../../Common/SvgStatic';
 import SearchPopover from './SearchPopover';
 import ProfilePopover from './ProfilePopover';
+import NotificationPopover from './NotificationPopover';
 import clsx from 'clsx';
 
 import { makeStyles } from '@mui/styles';
@@ -30,6 +31,7 @@ import {
     Badge,
     Box, Button, Drawer, IconButton, List, ListItem, TextField, Typography, useMediaQuery, Accordion, AccordionSummary, AccordionDetails, InputAdornment, Popover, popoverClasses, useTheme
 } from '@mui/material' ;
+import MessagePopover from './MessagePopover';
   
 
 const useStyles = makeStyles((theme) => ({
@@ -218,13 +220,17 @@ const Header = (props) => {
     const match = useMediaQuery('(min-width : 750px)');
     const theme = useTheme();
     const colorMode = useContext(ColorModeContext);
-    const anchorRefSearch = React.useRef(null) ;
-    const anchorRefProfile = React.useRef(null) ;
+    const anchorRefSearch = useRef(null) ;
+    const anchorRefProfile = useRef(null) ;
+    const anchorRefMessage = useRef(null);
+    const anchorRefNotification = useRef(null);
 
     const [ searchText, setSearchText ] = useState(null);
     const [ open, setOpen ] = useState(false);
     const [ searchPopOver, setSearchPopOver ] = useState(false);
     const [ profilePopOver, setProfilePopOver ] = useState(false);
+    const [ messagePopOver, setMessagePopOver ] = useState(false);
+    const [ notificationPopOver, setNotificationPopOver ] = useState(false);
 
     const handleMenuChange = (element) => {
         navigate(element.link)
@@ -249,6 +255,22 @@ const Header = (props) => {
 
     const handleCloseProfilePopover = () => {
         setProfilePopOver(false);
+    }
+
+    const handleOpenMessagePopOver = () => {
+        setMessagePopOver(true);
+    }
+
+    const handleCloseMessagePopOver = () => {
+        setMessagePopOver(false);
+    }
+
+    const handleOpenNotificationPopover = () => {
+        setNotificationPopOver(true);
+    }
+
+    const handleCloseNotificationPopover = () => {
+        setNotificationPopOver(false)
     }
 
     const themeModeHandleClick = (mode) => {
@@ -368,7 +390,7 @@ const Header = (props) => {
                             </ListItem>
                             <ListItem sx={{color : '#8E59FF', mt : '20px'}}>
                                 { UpgradeIcon }
-                                Upgrate to Pro
+                                Upgrade to Pro
                             </ListItem>
                             <ListItem sx={{mt : '20px'}}>
                                 Account settings
@@ -448,10 +470,17 @@ const Header = (props) => {
                                 </Typography>
                             </Button>
                         <Badge color="error" variant='dot'>
-                            <MessageIcon />
+                            <MessageIcon 
+                                ref={anchorRefMessage}
+                                onClick={handleOpenMessagePopOver}
+                                sx={{cursor : 'pointer'}}
+                            />
                         </Badge>
                         <Badge color="error" variant='dot'>
-                            <NotificationsIcon/>
+                            <NotificationsIcon
+                                onClick={handleOpenNotificationPopover}
+                                ref={anchorRefNotification}
+                            />
                         </Badge>
                         <Box component={'img'} src={Avatar_Image}
                             onClick={handleOpenProfilePopover}
@@ -472,10 +501,16 @@ const Header = (props) => {
                                 style={{ fill: "#6F767E" }}
                             />
                             <Badge color="error" variant='dot'>
-                                <MessageIcon />
+                                <MessageIcon 
+                                    ref={anchorRefMessage}
+                                    onClick={handleOpenMessagePopOver}
+                                />
                             </Badge>
                             <Badge color="error" variant='dot'>
-                                <NotificationsIcon/>
+                                <NotificationsIcon
+                                    onClick={handleOpenNotificationPopover}
+                                    ref={anchorRefNotification}
+                                />
                             </Badge>
                         </> :
                         <TextField
@@ -521,6 +556,18 @@ const Header = (props) => {
                 popOver={profilePopOver}
                 anchorRef={anchorRefProfile}
                 handleClosePopOver={handleCloseProfilePopover}
+            />
+            
+            <MessagePopover 
+                popOver={messagePopOver}
+                anchorRef={anchorRefMessage}
+                handleClosePopOver={handleCloseMessagePopOver}
+            />
+            
+            <NotificationPopover
+                popOver={notificationPopOver}
+                anchorRef={anchorRefNotification}
+                handleClosePopOver={handleCloseNotificationPopover}
             />
         </Box>
     );

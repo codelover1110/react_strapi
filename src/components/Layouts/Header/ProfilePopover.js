@@ -1,4 +1,5 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 
 import {
     Box, List, ListItem, Popover
@@ -15,6 +16,7 @@ const useStyles = makeStyles((theme) => ({
             display : 'flex',
             alignItems : 'center',
             padding : '10px 0px',
+            cursor : 'pointer'
         },
         "& svg" : {
             marginRight : '20px'
@@ -31,6 +33,12 @@ const ProfilePopover = (props) => {
     } = props;
 
     const classes = useStyles();
+    const navigate = useNavigate();
+
+    const handleChangeNavigate = (url) => {
+        navigate(url);
+        handleClosePopOver();
+    }
 
     return(
         
@@ -49,32 +57,32 @@ const ProfilePopover = (props) => {
         >
             <Box className={classes.popOver}>
                 <List>
-                    <ListItem>
+                    <ListItem onClick={() => handleChangeNavigate('/profile')}>
                         Profile
                     </ListItem>
-                    <ListItem>
+                    <ListItem onClick={() => handleChangeNavigate('/editprofile')}>
                         Edit profile
                     </ListItem>
-                    <ListItem sx={{fontWeight : 'bold', mt : '20px'}}>
+                    <ListItem onClick={() => handleChangeNavigate('/analytics')} sx={{fontWeight : 'bold', mt : '20px'}}>
                         { AnalyticsIcon }
                         Analytics
                     </ListItem>
-                    <ListItem>
+                    <ListItem onClick={() => handleChangeNavigate('/affiliate')}>
                         { AffiliateIcon }
                         Affiliate center
                     </ListItem>
-                    <ListItem>
+                    <ListItem onClick={() => handleChangeNavigate('/explore')}>
                         { ExploreIcon }
                         Explore authors
                     </ListItem>
-                    <ListItem sx={{color : '#8E59FF', mt : '20px'}}>
+                    <ListItem onClick={() => handleChangeNavigate('/upgrade')} sx={{color : '#8E59FF', mt : '20px'}}>
                         { UpgradeIcon }
-                        Upgrate to Pro
+                        Upgrade to Pro
                     </ListItem>
-                    <ListItem sx={{mt : '20px'}}>
+                    <ListItem onClick={() => handleChangeNavigate('/settings')} sx={{mt : '20px'}}>
                         Account settings
                     </ListItem>
-                    <ListItem>
+                    <ListItem onClick={() => handleChangeNavigate('/logout')}>
                         Log out
                     </ListItem>
                 </List>

@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-import { FacebookIcon, TwitterIcon } from "../../../components/Common/SvgStatic";
+import { FacebookSvgIcon, TwitterSvgIcon } from "../../../components/Common/SvgStatic";
 
 import InstagramIcon from '@mui/icons-material/Instagram';
 
@@ -76,13 +76,13 @@ const GetCustomer = () => {
 
                 <Box className={classes.buttonGroup}>
                     <Button variant="outlined">
-                        {FacebookIcon}
+                        {FacebookSvgIcon}
                         {
                             match && "Facebook"
                         }
                     </Button>
                     <Button variant="outlined">
-                        {TwitterIcon}
+                        {TwitterSvgIcon}
                         {
                             match && "Twitter"
                         }
