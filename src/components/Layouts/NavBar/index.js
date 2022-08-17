@@ -72,26 +72,26 @@ const menuList = [
         icon : HomeIcon,
         link : '/home',
     },
-    {
-        label : 'Products',
-        icon : ProductsIcon,
-        link : '/product',
-    },
-    {
-        label : 'Customers',
-        icon : CustomersIcon,
-        link : '/customer',
-    },
+    // {
+    //     label : 'Products',
+    //     icon : ProductsIcon,
+    //     link : '/product',
+    // },
+    // {
+    //     label : 'Customers',
+    //     icon : CustomersIcon,
+    //     link : '/customer',
+    // },
     {
         label : 'Shop',
         icon : ShopIcon,
         link : '/shop',
     },
-    {
-        label : 'Income',
-        icon : IncomeMenuIcon,
-        link : '/income',
-    },
+    // {
+    //     label : 'Income',
+    //     icon : IncomeMenuIcon,
+    //     link : '/income',
+    // },
     {
         label : 'Promote',
         icon : PromoteIcon,
