@@ -22,11 +22,14 @@ const useStyles = makeStyles((theme) => ({
 }))
 const Upgrade = () => {
     const classes = useStyles() ;
+    const match900 = useMediaQuery('(min-width : 900px)');
     
     return (
         <Box className={classes.root}>
             <UpgradeToPro />
-            <FAQ />
+            {
+                match900 && <FAQ />
+            }
         </Box>
     );
 }

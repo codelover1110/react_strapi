@@ -9,6 +9,7 @@ import {
     Box,
     Grid,
     Paper,
+    useMediaQuery,
     useTheme,
 } from '@mui/material' ;
 
@@ -30,6 +31,7 @@ const useStyles = makeStyles((theme) => ({
 const SettingForm = () => {
     const classes = useStyles() ;
     const theme = useTheme();
+    const match900 = useMediaQuery('(min-width : 900px)');
 
     const [ type, setType ] = useState(1);
     const [ overViewType, setOverViewType ] = useState('customer');
@@ -42,14 +44,14 @@ const SettingForm = () => {
         <Box className={classes.root}>
             <Paper>
                 <Grid container>
-                    <Grid items xs={3}>
-                        <SettingMenu />
+                    <Grid items xs={match900 ? 3 : 12}>
+                        <SettingMenu match900={match900}/>
                     </Grid>
-                    <Grid items xs={9}>
-                        <ProfileInfo />
-                        <Login />
-                        <Notifications />
-                        <Payment />
+                    <Grid items xs={match900 ? 9 : 12}>
+                        <ProfileInfo match900={match900}/>
+                        <Login match900={match900}/>
+                        <Notifications match900={match900}/>
+                        <Payment match900={match900}/>
                     </Grid>
                 </Grid>
             </Paper>

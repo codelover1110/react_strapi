@@ -4,6 +4,7 @@ import {
     Box,
     Grid,
     Paper,
+    useMediaQuery,
 } from '@mui/material' ;
 
 import { makeStyles } from '@mui/styles';
@@ -24,11 +25,12 @@ const useStyles = makeStyles((theme) => ({
             borderRadius : '8px',
 
             ['@media (max-width:700px)'] : {
-                padding : '10px'
+                padding : '0px'
             }
         },
         ['@media (max-width:900px)'] : {
-            padding : '20px'
+            height : '1400px',
+            padding : '0px'
         }
     },
     dashboard : {
@@ -40,6 +42,7 @@ const useStyles = makeStyles((theme) => ({
 }))
 const UpgradeToPro = () => {
     const classes = useStyles() ;
+    const match900 = useMediaQuery('(min-width : 900px)');
     
     return (
         <Box className={classes.root}>
@@ -48,10 +51,10 @@ const UpgradeToPro = () => {
             </Box>
             <Paper>
                 <Grid container spacing={2}>
-                    <Grid item xs={6} sx={{}}>
+                    <Grid item xs={match900 ? 6 : 12}>
                         <Lite />
                     </Grid>
-                    <Grid item xs={6}>
+                    <Grid item xs={match900 ? 6 : 12}>
                         <Pro />
                     </Grid>
                 </Grid>

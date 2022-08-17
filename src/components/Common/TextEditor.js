@@ -10,10 +10,10 @@ const TextEditor = () => {
     
     return (
         <div>
-            <div style={{ border: "1px solid black", padding: '2px', minHeight: '150px' }}>
+            <div style={{ border: "1px solid black", padding: '2px', minHeight: '300px' }}>
                 <Editor
-                editorState={editorState}
-                onEditorStateChange={setEditorState}
+                    editorState={editorState}
+                    onEditorStateChange={setEditorState}
                 />
             </div>
         </div>

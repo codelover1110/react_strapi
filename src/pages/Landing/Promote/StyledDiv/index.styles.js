@@ -13,5 +13,4 @@ export const useStyles = makeStyles((theme)=>({
         color: theme.palette.common.black,
         fontWeight: 'bold'
     },
-    
 }))

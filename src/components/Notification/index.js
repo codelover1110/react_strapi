@@ -35,9 +35,9 @@ const Notification = () => {
         } else {
             newChecked.splice(currentIndex, 1);
         }
-
         setChecked(newChecked);
     }
+
     const NotificationList = [
         {
             image_url: manAvatar1,
@@ -105,7 +105,7 @@ const Notification = () => {
                 Notification
             </Box>
             <Grid container spacing={1}>
-                <Grid item xs={8}>
+                <Grid item sm={8} xs={12} className={classes.NotificationList}>
                     <Paper>
                         <Box className={classes.Notification}>
                             <Box className={classes.head}>
@@ -175,8 +175,8 @@ const Notification = () => {
                                         return (
                                             <ListItem key={index} sx={{borderBottom: '1px solid #EFEFEF'}}>
                                                 <Box sx={{ display: 'flex' }}>
-                                                    <Box position="relative" sx={{ marginRight: '20px', width: '48px', height: '48px' }}>
-                                                        <img src={Notification.image_url} alt="" style={{ width: '48px', height: '48px', borderRadius: '50%' }} />
+                                                    <Box position="relative" sx={{ marginRight: '20px', minWidth: '48px', height: '48px' }}>
+                                                        <img src={Notification.image_url} alt="" style={{ width: '48px', borderRadius: '50%' }} />
                                                         <Box sx={{
                                                             display: 'flex',
                                                             justifyContent: 'center',
@@ -225,14 +225,14 @@ const Notification = () => {
 
                     </Paper>
                 </Grid>
-                <Grid item xs={4}>
+                <Grid item sm={4} xs={12} className={classes.NotificationFilter}>
                     <Paper>
                         <Box className={classes.Filter}>
                             <Box className={classes.header}>
                                 <Box sx={{ width: '16px', height: '32px', backgroundColor: '#CABDFF', borderRadius: '4px' }}></Box>
                                 <Box sx={{ paddingLeft: '16px' }}>Filter</Box>
                             </Box>
-                            <List className={classes.ListItems} dense sx={{ width: '100%', maxWidth: 360, bgcolor: 'background.paper' }}>
+                            <List className={classes.ListItems} dense sx={{ width: '100%', bgcolor: 'background.paper' }}>
                                 <ListItem
                                     key={1}
                                     onClick={handleToggle(1)}

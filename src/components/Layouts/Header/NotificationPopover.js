@@ -127,7 +127,6 @@ const NotificationPopover = (props) => {
     }
 
     return (
-
         <Popover
             open={popOver}
             anchorEl={anchorRef ? anchorRef.current : null}
@@ -143,7 +142,11 @@ const NotificationPopover = (props) => {
             <Box className={classes.popOver}>
                 <Box className={classes.popOverHeader}>
                     Notification
-                    <IconButton>
+                    <IconButton sx={{
+                        "&:hover": {
+                            backgroundColor: '#EFEEEE'
+                        }
+                    }}>
                         <MoreHorizOutlinedIcon />
                     </IconButton>
                 </Box>
@@ -206,7 +209,7 @@ const NotificationPopover = (props) => {
                                                 height: '10px'
                                             }
                                         }}>
-                                            { subIcon }
+                                            {subIcon}
                                         </Box>
 
                                     </Box>

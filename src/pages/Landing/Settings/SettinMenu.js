@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 
 import {
-    Box, List, ListItem,
+    Box, List, ListItem, Select,
 } from '@mui/material' ;
 
 import { makeStyles } from '@mui/styles' ;
@@ -27,7 +27,11 @@ const useStyles = makeStyles((theme) => ({
     }
 }))
 
-const SettingMenu = () => {
+const SettingMenu = (props) => {
+
+    const {
+        match900
+    } = props;
 
     const classes = useStyles() ;
     
@@ -39,20 +43,30 @@ const SettingMenu = () => {
 
     return (
         <Box className={classes.root}>
-            <List>
-                <ListItem onClick={() => handleChangeSelected('basics')} className={selectedItem === 'basics' ? classes.selected : ''}>
-                    Basics
-                </ListItem>
-                <ListItem onClick={() => handleChangeSelected('account')} className={selectedItem === 'account' ? classes.selected : ''}>
-                    Account
-                </ListItem>
-                <ListItem onClick={() => handleChangeSelected('notifications')} className={selectedItem === 'notifications' ? classes.selected : ''}>
-                    Notifications
-                </ListItem>
-                <ListItem onClick={() => handleChangeSelected('payment')} className={selectedItem === 'payment' ? classes.selected : ''}>
-                    Payment
-                </ListItem>
-            </List>
+            {
+                match900 ?
+                <List>
+                    <ListItem onClick={() => handleChangeSelected('basics')} className={selectedItem === 'basics' ? classes.selected : ''}>
+                        Basics
+                    </ListItem>
+                    <ListItem onClick={() => handleChangeSelected('account')} className={selectedItem === 'account' ? classes.selected : ''}>
+                        Account
+                    </ListItem>
+                    <ListItem onClick={() => handleChangeSelected('notifications')} className={selectedItem === 'notifications' ? classes.selected : ''}>
+                        Notifications
+                    </ListItem>
+                    <ListItem onClick={() => handleChangeSelected('payment')} className={selectedItem === 'payment' ? classes.selected : ''}>
+                        Payment
+                    </ListItem>
+                </List>
+                :
+                <Select fullWidth defaultValue={"basic"}>
+                    <option value="basic"> Basic </option>
+                    <option value="account"> Account </option>
+                    <option value="notifications"> Notifications </option>
+                    <option value="payment"> Payment </option>
+                </Select>
+            }
         </Box>
     );
 }

@@ -1,6 +1,5 @@
 import { makeStyles } from '@mui/styles';
 
-
 export const useStyles = makeStyles((theme) => ({
     root: {
         "& .MuiPaper-root": {
@@ -10,8 +9,8 @@ export const useStyles = makeStyles((theme) => ({
             "& .MuiFormControl-root": {
                 width: '100px'
             },
-            ['@media (max-width:700px)']: {
-                padding: '10px'
+            "@media (max-width:768px)": {
+                padding: '20px 16px'
             }
         },
         "& .MuiButton-root": {
@@ -23,20 +22,16 @@ export const useStyles = makeStyles((theme) => ({
             borderRadius: '12px',
             padding: '10px',
         },
-        // "& apexcharts-tooltip" : {
-        //     color : 'red',
-        // }
     },
     top: {
         width: '100%',
         display: 'flex',
         justifyContent: 'space-between',
         alignItems: 'center',
-        marginBottom: '20px',
+        marginBottom: '20px',   
         "& .MuiFormControl-root": {
             margin: '0px',
             "& .MuiOutlinedInput-root": {
-                // border: '2px solid #EFEFEF'
             }
         }
     },
@@ -46,9 +41,45 @@ export const useStyles = makeStyles((theme) => ({
         background: '#FFBC99',
         borderRadius: '4px',
     },
-    dashPanel: {
-        "& .MuiSvgIcon-root": {
-            color: '#1A1D1F'
-        },
+
+    customerItem: {
+        padding: '32px 0',
+        "&+ .MuiGrid-item": {
+            "@media (min-width: 1200px)": {
+                borderLeft: '1px solid #EFEFEF',
+            },
+            "@media (max-width: 1200px)": {
+                borderLeft: '1px solid #EFEFEF',
+            },
+            "@media (max-width: 900px)": {
+                border: 0
+            },
+            "@media (max-width: 766px)": {
+                borderTop: '1px solid #EFEFEF',
+            },
+        }
     },
+    InsightIcon: {
+        display: 'flex', justifyContent: 'center', alignItems: 'center',
+        width: '48px', height: '48px',
+        borderRadius: '50%',
+        marginBottom: '24px',
+        "& .MuiSvgIcon-root": {
+            width: '20px',
+            height: '20px'
+        }
+    },
+    InsightTitle: {
+        display: 'flex', justifyContent: 'between', alignItems: 'center',
+        fontSize: '16px',
+        fontWeight: '600',
+        marginBottom: '8px'
+    },
+    InsigtValue: {
+        marginBottom: '8px',
+        fontSize: '48px', fontWeight: '600'
+    },
+    IncDecState: {
+        display: 'flex'
+    }
 }))

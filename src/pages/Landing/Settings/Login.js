@@ -40,7 +40,12 @@ const useStyles = makeStyles((theme) => ({
     },
 }))
 
-const Login = () => {
+const Login = (props) => {
+
+    const {
+        match900
+    } = props;
+
     const classes = useStyles() ;
 
     return (
@@ -62,7 +67,7 @@ const Login = () => {
             </Box>
             
             <Grid container spacing={2}>
-                <Grid item xs={6}>
+                <Grid item xs={match900 ? 6 : 12}>
                     <Box sx={{fontSize : '16px'}}>
                         New password
                         <ErrorIcon sx={{ml : 1}}/>
@@ -72,7 +77,7 @@ const Login = () => {
                         fullWidth
                     />
                 </Grid>
-                <Grid item xs={6}>
+                <Grid item xs={match900 ? 6 : 12}>
                     <Box sx={{fontSize : '16px'}}>
                         Confirm new password
                         <ErrorIcon sx={{ml : 1}}/>
@@ -84,10 +89,11 @@ const Login = () => {
                 </Grid>
             </Grid>
                 
-            <Button variant="outlined">
-                Update password
-            </Button>
-
+            <Box sx={{display : 'flex', justifyContent : 'center'}}>
+                <Button variant="outlined">
+                    Update password
+                </Button>
+            </Box>
         </Box>
     );
 }

@@ -4,7 +4,12 @@ import { makeStyles } from '@mui/styles';
 export const useStyles = makeStyles((theme) => ({
     root: {
         background: theme.palette.primary.main,
-        padding: '40px',
+        "@media(max-width : 768px)": {
+            padding: 16
+        },
+        "@media(min-width : 769px)": {
+            padding: 24
+        },
         fontSize: '16px',
         "& .MuiListItem-root": {
             display: 'flex',
@@ -15,8 +20,8 @@ export const useStyles = makeStyles((theme) => ({
         },
         "& .MuiPaper-root": {
             padding: '30px',
-            ['@media (max-width:700px)']: {
-                padding: '10px'
+            "@media (max-width:768px)": {
+                padding: '12px 16px'
             }
         },
         "& .MuiGrid-container": {
@@ -77,5 +82,8 @@ export const useStyles = makeStyles((theme) => ({
         },
         paddingBottom: '40px',
         borderBottom: '2px solid #EFEFEF'
+    },
+    NotificationList: {
+        
     }
 }));

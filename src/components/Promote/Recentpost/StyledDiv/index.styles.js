@@ -9,8 +9,8 @@ export const useStyles = makeStyles((theme) => ({
             "& .MuiFormControl-root": {
                 width: '100px'
             },
-            ['@media (max-width:700px)']: {
-                padding: '10px'
+            "@media (max-width:768px)": {
+                padding: '16px'
             }
         },
         "& .MuiButton-root": {
@@ -22,9 +22,6 @@ export const useStyles = makeStyles((theme) => ({
             borderRadius: '12px',
             padding: '10px',
         },
-        // "& apexcharts-tooltip" : {
-        //     color : 'red',
-        // }
     },
     top: {
         width: '100%',
@@ -36,7 +33,6 @@ export const useStyles = makeStyles((theme) => ({
             margin: '0px',
             marginRight: '10px',
             "& .MuiOutlinedInput-root": {
-                // border: '2px solid #EFEFEF'
             }
         }
     },
@@ -46,15 +42,17 @@ export const useStyles = makeStyles((theme) => ({
         background: '#B1E5FC;',
         borderRadius: '4px',
     },
-    dashPanel: {
-        "& .MuiSvgIcon-root": {
-            color: '#1A1D1F'
+    postItem: {
+        "@media(max-width: 768px)": {
+            padding: '24px 0px',
+            borderBottom: '1px solid #EFEFEF'
         }
     },
     modalContent : {
+        border: '1px solid red',
         width: '560px',
         minHeight: '410 px',
-        borderRadius: '16px', backgroundColor: theme.palette.primary.main,
+        borderRadius: '16px', backgroundColor: 'white',
         position: 'absolute', left: '50%', top: '50%',
         transform: 'translate(-50%, -50%)',
         padding : '24px',

@@ -24,6 +24,10 @@ const useStyles = makeStyles((theme) => ({
             background : '#2A85FF',
             borderRadius : '12px',
             padding : '10px',
+
+            ['@media (max-width:900px)'] : {
+                width : '180px'
+            }
         },
         "& .MuiFormControl-root" : {
             marginTop : '10px',
@@ -47,7 +51,11 @@ const useStyles = makeStyles((theme) => ({
     }
 }))
 
-const ProfileInfo = () => {
+const ProfileInfo = (props) => {
+    const {
+        match900
+    } = props;
+
     const classes = useStyles() ;
 
     return (
@@ -58,13 +66,16 @@ const ProfileInfo = () => {
             </Box>
 
             <Box>
-                <Box component={'img'} src={Avatar_Image} sx={{width : '80px', height : '80px', mr : 4}}/>
+                <Box component={'img'} src={Avatar_Image} sx={{width : '80px', height : '80px', mr : 2}}/>
                 <Button>
                     + Upload new picture
                 </Button>
-                <Button className={classes.removeButton}>
-                    Remove
-                </Button>
+                {
+                    match900 &&
+                    <Button className={classes.removeButton}>
+                        Remove
+                    </Button>
+                }
             </Box>
 
             <Box sx={{mt : 3}}>

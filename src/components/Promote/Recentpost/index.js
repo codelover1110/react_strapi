@@ -123,7 +123,10 @@ const rows = [
 const Recentpost = () => {
 
     const classes = useStyles();
-    const theme = useTheme();
+
+    const match1 = useMediaQuery('(min-width: 1200px)');
+    const match2 = useMediaQuery('(min-width: 900px)');
+    const match3 = useMediaQuery('(min-width: 768px)');
 
     const [type, setType] = useState(1);
     const [open, setOpen] = React.useState(false);
@@ -172,8 +175,6 @@ const Recentpost = () => {
         })
     };
 
-
-
     return (
         <Box className={classes.root}>
             <Paper>
@@ -182,69 +183,210 @@ const Recentpost = () => {
                         <Box className={classes.overViewTip} />
                         <Box sx={{ fontSize: '18px', ml: 2 }}> Recent Post</Box>
                     </Box>
-                    <Box>
-                        <FormControl fullWidth
-                            sx={{
-                                width: '100px',
-                                height: '40px',
-                                "& .MuiSelect-select": {
-                                    padding: '10px'
-                                },
-                                marginRight: '10px'
-                            }}
-                        >
-                            <Select
-                                labelId="demo-simple-select-label"
-                                id="demo-simple-select"
-                                value={type}
-                                onChange={(e) => handleChange(e)}
+                    {
+                        match3 &&
+                        <Box>
+                            <FormControl fullWidth
+                                sx={{
+                                    width: '100px',
+                                    height: '40px',
+                                    "& .MuiSelect-select": {
+                                        padding: '10px'
+                                    },
+                                    marginRight: '10px'
+                                }}
                             >
-                                <MenuItem value={1}> All time </MenuItem>
-                                <MenuItem value={10}>Ten</MenuItem>
-                                <MenuItem value={20}>Twenty</MenuItem>
-                                <MenuItem value={30}>Thirty</MenuItem>
-                            </Select>
-                        </FormControl>
-                        <Button onClick={handleOpen} variant="contained" sx={{ padding: '5px 16px 5px 16px', radius: '8px', fontSize: '13px', fontWeight: '700', backgroundColor: 'rgb(0, 140, 192)', color: 'white' }}>
-                            New Post
-                        </Button>
-                    </Box>
+                                <Select
+                                    labelId="demo-simple-select-label"
+                                    id="demo-simple-select"
+                                    value={type}
+                                    onChange={(e) => handleChange(e)}
+                                >
+                                    <MenuItem value={1}> All time </MenuItem>
+                                    <MenuItem value={10}>Ten</MenuItem>
+                                    <MenuItem value={20}>Twenty</MenuItem>
+                                    <MenuItem value={30}>Thirty</MenuItem>
+                                </Select>
+                            </FormControl>
+                            <Button onClick={handleOpen} variant="contained" sx={{ padding: '5px 16px 5px 16px', radius: '8px', fontSize: '13px', fontWeight: '700', backgroundColor: 'rgb(0, 140, 192)', color: 'white' }}>
+                                New Post
+                            </Button>
+                        </Box>
+                    }
+
                 </Box>
                 <Box className={classes.postList}>
-                    <TableContainer component={Paper} sx={{ padding: '0px !important' }}>
-                        <Table sx={{
-                            minWidth: 650,
-                            "& .MuiTableCell-root": {
-                                textAlign: 'left'
-                            },
+                    {
+                        match3 &&
+                        <TableContainer component={Paper} sx={{ padding: '0px !important' }}>
+                            <Table sx={{
+                                minWidth: 650,
+                                "& .MuiTableCell-root": {
+                                    textAlign: 'left'
+                                },
 
-                        }} aria-label="simple table">
-                            <TableHead>
-                                <TableRow>
-                                    <TableCell sx={{ fontSize: '12px' }}>Post</TableCell>
-                                    <TableCell sx={{ fontSize: '12px' }} align="right"></TableCell>
-                                    <TableCell sx={{ fontSize: '12px' }} align="right">Distribution</TableCell>
-                                    <TableCell sx={{ fontSize: '12px' }} align="right">Link clicks</TableCell>
-                                    <TableCell sx={{ fontSize: '12px' }} align="right">Views</TableCell>
-                                    <TableCell sx={{ fontSize: '12px' }} align="right">Engagement</TableCell>
-                                </TableRow>
-                            </TableHead>
-                            <TableBody >
-                                {rows.map((row, index) => (
-                                    <TableRow
-                                        sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
-                                        key={index}
-                                    >
-                                        <TableCell sx={{ position: 'relative', paddingLeft: 'inherit' }} width="180px" >
-                                            <Box sx={{ height: '150px' }}>
+                            }} aria-label="simple table">
+                                <TableHead>
+                                    <TableRow>
+                                        <TableCell sx={{ fontSize: '12px' }}>Post</TableCell>
+                                        <TableCell sx={{ fontSize: '12px' }} align="right"></TableCell>
+                                        <TableCell sx={{ fontSize: '12px' }} align="right">Distribution</TableCell>
+                                        <TableCell sx={{ fontSize: '12px' }} align="right">Link clicks</TableCell>
+                                        <TableCell sx={{ fontSize: '12px' }} align="right">Views</TableCell>
+                                        <TableCell sx={{ fontSize: '12px' }} align="right">Engagement</TableCell>
+                                    </TableRow>
+                                </TableHead>
+                                <TableBody >
+                                    {rows.map((row, index) => (
+                                        <TableRow
+                                            sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
+                                            key={index}
+                                        >
+                                            <TableCell sx={{ position: 'relative', paddingLeft: 'inherit' }} width="180px" >
+                                                <Box sx={{ height: '150px' }}>
+                                                    <Box sx={{ position: 'absolute', zIndex: '1', padding: '2px', margin: '2px', borderRadius: '5px', backgroundColor: '#FFF', color: '#6F767E' }}>
+                                                        {row.type === 'picture' && <InsertPhotoIcon />}
+                                                        {row.type === 'video' && <VideocamIcon />}
+                                                    </Box>
+                                                    <img src={row.image} width="175px" height="118px" style={{ borderRadius: '5px' }} />
+                                                </Box>
+                                            </TableCell>
+                                            <TableCell width="180px">
+                                                <Box sx={{ display: 'flex', justifyContent: 'start', alignItems: 'end', fontSize: '15px', fontWeight: '700' }}>
+                                                    {row.message.description}
+                                                </Box>
+                                                <Box sx={{ display: 'flex', marginTop: '20px' }}>
+                                                    {row.message.facebook === true && <Box sx={{ width: '36px', height: '36px', borderRadius: '50%', display: 'flex', justifyContent: 'center', alignItems: 'center', backgroundColor: '#EFEFEF' }}>{FacebookSvgIcon}</Box>}
+                                                    {row.message.twitter === true && <Box sx={{ width: '36px', height: '36px', borderRadius: '50%', display: 'flex', justifyContent: 'center', alignItems: 'center', backgroundColor: '#EFEFEF', marginLeft: '12px' }}> {TwitterSvgIcon}</Box>}
+                                                </Box>
+                                            </TableCell>
+                                            <TableCell>
+                                                <Box sx={{
+                                                    height: '150px',
+                                                    paddingTop: '30px'
+                                                }}>
+                                                    <Box sx={{
+                                                        padding: '0 7px',
+                                                        fontSize: "15px",
+                                                        fontWeight: "600",
+                                                        backgroundColor: "#B5E4CA",
+                                                        display: 'inline-flex',
+                                                        borderRadius: '5px',
+                                                        marginRight: '8px'
+                                                    }}>
+                                                        {row.distribution >= 0 ? '+' : ''}{row.distribution}x
+                                                    </Box>
+                                                </Box>
+                                            </TableCell>
+                                            <TableCell>
+                                                <Box sx={{ height: '150px', paddingTop: '30px' }}>
+                                                    <Box sx={{ display: 'flex', justifyContent: 'start', alignItems: 'center' }}>
+                                                        <Box sx={{
+                                                            padding: '0 7px',
+                                                            fontSize: "15px",
+                                                            lineHeight: '24px',
+                                                            fontWeight: "600",
+                                                            backgroundColor: "#EFEFEF",
+                                                            display: 'inline-flex',
+                                                            borderRadius: '5px',
+                                                            marginRight: '8px'
+                                                        }}>
+                                                            {row.linkClicks}
+                                                        </Box>
+                                                        <Box sx={{
+                                                            width: "44px",
+                                                            height: "12px",
+                                                            backgroundColor: "#FF6A55",
+                                                            borderRadius: '2px'
+                                                        }}>
+                                                        </Box>
+                                                    </Box>
+                                                    <Box color="#83BF6E" sx={{ fontSize: '12px', lineHeight: '16px', marginTop: '10px' }}>
+                                                        <ArrowUpwardIcon color="#83BF6E" />
+                                                        37.8%
+                                                    </Box>
+                                                </Box>
+                                            </TableCell>
+                                            <TableCell>
+                                                <Box sx={{ height: '150px', paddingTop: '30px' }}>
+                                                    <Box sx={{ display: 'flex', justifyContent: 'start', alignItems: 'center' }}>
+                                                        <Box sx={{
+                                                            padding: '0 7px',
+                                                            fontSize: "15px",
+                                                            lineHeight: '24px',
+                                                            fontWeight: "600",
+                                                            backgroundColor: "#EFEFEF",
+                                                            display: 'inline-flex',
+                                                            borderRadius: '5px',
+                                                            marginRight: '8px'
+                                                        }}>
+                                                            {row.views}
+                                                        </Box>
+                                                        <Box sx={{
+                                                            width: "44px",
+                                                            height: "12px",
+                                                            backgroundColor: "#83BF6E",
+                                                            borderRadius: '2px'
+                                                        }}>
+                                                        </Box>
+                                                    </Box>
+                                                    <Box color="#83BF6E" sx={{ fontSize: '12px', lineHeight: '16px', marginTop: '10px' }}>
+                                                        <ArrowUpwardIcon color="#83BF6E" />
+                                                        37.8%
+                                                    </Box>
+                                                </Box>
+                                            </TableCell>
+                                            <TableCell>
+                                                <Box sx={{ height: '150px', paddingTop: '30px' }}>
+                                                    <Box sx={{ display: 'flex', justifyContent: 'start', alignItems: 'center' }}>
+                                                        <Box sx={{
+                                                            padding: '0 7px',
+                                                            fontSize: "15px",
+                                                            lineHeight: '24px',
+                                                            fontWeight: "600",
+                                                            backgroundColor: "#83BF6E",
+                                                            display: 'inline-flex',
+                                                            borderRadius: '5px',
+                                                            marginRight: '8px'
+                                                        }}>
+                                                            {row.engagement}
+                                                        </Box>
+                                                        <Box sx={{
+                                                            width: "44px",
+                                                            height: "12px",
+                                                            backgroundColor: "#2A85FF",
+                                                            borderRadius: '2px'
+                                                        }}>
+                                                        </Box>
+                                                    </Box>
+                                                    <Box color="#83BF6E" sx={{ fontSize: '12px', lineHeight: '16px', marginTop: '10px' }}>
+                                                        <ArrowUpwardIcon color="#83BF6E" />
+                                                        37.8%
+                                                    </Box>
+                                                </Box>
+                                            </TableCell>
+                                        </TableRow>
+                                    ))}
+                                </TableBody>
+                            </Table>
+                        </TableContainer>
+                    }
+                    {
+                        !match3 &&
+                        <Grid container class={classes.postList} direction="column">
+                            {rows.map((row, index) => (
+                                <Grid item container direction="column" spacing={0.5} className={classes.postItem} key={index}>
+                                    <Grid item container spacing={1}>
+                                        <Grid item xs={6} >
+                                            <Box sx={{ height: '150px', position: 'relative'}}>
                                                 <Box sx={{ position: 'absolute', zIndex: '1', padding: '2px', margin: '2px', borderRadius: '5px', backgroundColor: '#FFF', color: '#6F767E' }}>
                                                     {row.type === 'picture' && <InsertPhotoIcon />}
                                                     {row.type === 'video' && <VideocamIcon />}
                                                 </Box>
-                                                <img src={row.image} width="175px" height="118px" style={{ borderRadius: '5px' }} />
+                                                <img src={row.image} alt="" width="175px" height="118px" style={{ borderRadius: '5px' }} />
                                             </Box>
-                                        </TableCell>
-                                        <TableCell width="180px">
+                                        </Grid>
+                                        <Grid item xs={6}>
                                             <Box sx={{ display: 'flex', justifyContent: 'start', alignItems: 'end', fontSize: '15px', fontWeight: '700' }}>
                                                 {row.message.description}
                                             </Box>
@@ -252,122 +394,130 @@ const Recentpost = () => {
                                                 {row.message.facebook === true && <Box sx={{ width: '36px', height: '36px', borderRadius: '50%', display: 'flex', justifyContent: 'center', alignItems: 'center', backgroundColor: '#EFEFEF' }}>{FacebookSvgIcon}</Box>}
                                                 {row.message.twitter === true && <Box sx={{ width: '36px', height: '36px', borderRadius: '50%', display: 'flex', justifyContent: 'center', alignItems: 'center', backgroundColor: '#EFEFEF', marginLeft: '12px' }}> {TwitterSvgIcon}</Box>}
                                             </Box>
-                                        </TableCell>
-                                        <TableCell>
+                                        </Grid>
+                                    </Grid>
+                                    <Grid item container>
+                                        <Grid item xs={6}>
+                                            Distribution
+                                        </Grid>
+                                        <Grid item xs={6}>
                                             <Box sx={{
-                                                height: '150px',
-                                                paddingTop: '30px'
+                                                padding: '0 7px',
+                                                fontSize: "15px",
+                                                fontWeight: "600",
+                                                backgroundColor: "#B5E4CA",
+                                                display: 'inline-flex',
+                                                borderRadius: '5px',
+                                                marginRight: '8px'
                                             }}>
+                                                {row.distribution >= 0 ? '+' : ''}{row.distribution}x
+                                            </Box>
+                                        </Grid>
+                                    </Grid>
+                                    <Grid item container >
+                                        <Grid item xs={6}>
+                                            Link clicks
+                                        </Grid>
+                                        <Grid item xs={6}>
+                                            <Box sx={{ display: 'flex', justifyContent: 'start', alignItems: 'center' }}>
                                                 <Box sx={{
                                                     padding: '0 7px',
                                                     fontSize: "15px",
+                                                    lineHeight: '24px',
                                                     fontWeight: "600",
-                                                    backgroundColor: "#B5E4CA",
+                                                    backgroundColor: "#EFEFEF",
                                                     display: 'inline-flex',
                                                     borderRadius: '5px',
                                                     marginRight: '8px'
                                                 }}>
-                                                    {row.distribution >= 0 ? '+' : ''}{row.distribution}x
+                                                    {row.linkClicks}
                                                 </Box>
-                                            </Box>
-                                        </TableCell>
-                                        <TableCell>
-                                            <Box sx={{ height: '150px', paddingTop: '30px' }}>
-                                                <Box sx={{ display: 'flex', justifyContent: 'start', alignItems: 'center' }}>
-                                                    <Box sx={{
-                                                        padding: '0 7px',
-                                                        fontSize: "15px",
-                                                        lineHeight: '24px',
-                                                        fontWeight: "600",
-                                                        backgroundColor: "#EFEFEF",
-                                                        display: 'inline-flex',
-                                                        borderRadius: '5px',
-                                                        marginRight: '8px'
-                                                    }}>
-                                                        {row.linkClicks}
-                                                    </Box>
-                                                    <Box sx={{
-                                                        width: "44px",
-                                                        height: "12px",
-                                                        backgroundColor: "#FF6A55",
-                                                        borderRadius: '2px'
-                                                    }}>
-                                                    </Box>
+                                                <Box sx={{
+                                                    width: "44px",
+                                                    height: "12px",
+                                                    backgroundColor: "#FF6A55",
+                                                    borderRadius: '2px'
+                                                }}>
                                                 </Box>
-                                                <Box color="#83BF6E" sx={{ fontSize: '12px', lineHeight: '16px', marginTop: '10px' }}>
+                                                <Box color="#83BF6E" sx={{ fontSize: '12px', lineHeight: '16px', }}>
                                                     <ArrowUpwardIcon color="#83BF6E" />
                                                     37.8%
                                                 </Box>
                                             </Box>
-                                        </TableCell>
-                                        <TableCell>
-                                            <Box sx={{ height: '150px', paddingTop: '30px' }}>
-                                                <Box sx={{ display: 'flex', justifyContent: 'start', alignItems: 'center' }}>
-                                                    <Box sx={{
-                                                        padding: '0 7px',
-                                                        fontSize: "15px",
-                                                        lineHeight: '24px',
-                                                        fontWeight: "600",
-                                                        backgroundColor: "#EFEFEF",
-                                                        display: 'inline-flex',
-                                                        borderRadius: '5px',
-                                                        marginRight: '8px'
-                                                    }}>
-                                                        {row.views}
-                                                    </Box>
-                                                    <Box sx={{
-                                                        width: "44px",
-                                                        height: "12px",
-                                                        backgroundColor: "#83BF6E",
-                                                        borderRadius: '2px'
-                                                    }}>
-                                                    </Box>
+                                        </Grid>
+                                    </Grid>
+                                    <Grid item container>
+                                        <Grid item xs={6}>
+                                            Views
+                                        </Grid>
+                                        <Grid item xs={6}>
+                                            <Box sx={{ display: 'flex', justifyContent: 'start', alignItems: 'center' }}>
+                                                <Box sx={{
+                                                    padding: '0 7px',
+                                                    fontSize: "15px",
+                                                    lineHeight: '24px',
+                                                    fontWeight: "600",
+                                                    backgroundColor: "#EFEFEF",
+                                                    display: 'inline-flex',
+                                                    borderRadius: '5px',
+                                                    marginRight: '8px'
+                                                }}>
+                                                    {row.views}
                                                 </Box>
-                                                <Box color="#83BF6E" sx={{ fontSize: '12px', lineHeight: '16px', marginTop: '10px' }}>
+                                                <Box sx={{
+                                                    width: "44px",
+                                                    height: "12px",
+                                                    backgroundColor: "#83BF6E",
+                                                    borderRadius: '2px'
+                                                }}>
+                                                </Box>
+                                                <Box color="#83BF6E" sx={{ fontSize: '12px', lineHeight: '16px', }}>
                                                     <ArrowUpwardIcon color="#83BF6E" />
                                                     37.8%
                                                 </Box>
                                             </Box>
-                                        </TableCell>
-                                        <TableCell>
-                                            <Box sx={{ height: '150px', paddingTop: '30px' }}>
-                                                <Box sx={{ display: 'flex', justifyContent: 'start', alignItems: 'center' }}>
-                                                    <Box sx={{
-                                                        padding: '0 7px',
-                                                        fontSize: "15px",
-                                                        lineHeight: '24px',
-                                                        fontWeight: "600",
-                                                        backgroundColor: "#83BF6E",
-                                                        display: 'inline-flex',
-                                                        borderRadius: '5px',
-                                                        marginRight: '8px'
-                                                    }}>
-                                                        {row.engagement}
-                                                    </Box>
-                                                    <Box sx={{
-                                                        width: "44px",
-                                                        height: "12px",
-                                                        backgroundColor: "#2A85FF",
-                                                        borderRadius: '2px'
-                                                    }}>
-                                                    </Box>
+
+                                        </Grid>
+                                    </Grid>
+                                    <Grid item container>
+                                        <Grid item xs={6}>
+                                            Engagement
+                                        </Grid>
+                                        <Grid item xs={6}>
+                                            <Box sx={{ display: 'flex', justifyContent: 'start', alignItems: 'center' }}>
+                                                <Box sx={{
+                                                    padding: '0 7px',
+                                                    fontSize: "15px",
+                                                    lineHeight: '24px',
+                                                    fontWeight: "600",
+                                                    backgroundColor: "#83BF6E",
+                                                    display: 'inline-flex',
+                                                    borderRadius: '5px',
+                                                    marginRight: '8px'
+                                                }}>
+                                                    {row.engagement}
                                                 </Box>
-                                                <Box color="#83BF6E" sx={{ fontSize: '12px', lineHeight: '16px', marginTop: '10px' }}>
-                                                    <ArrowUpwardIcon color="#83BF6E" />
-                                                    37.8%
+                                                <Box sx={{
+                                                    width: "44px",
+                                                    height: "12px",
+                                                    backgroundColor: "#2A85FF",
+                                                    borderRadius: '2px'
+                                                }}>
                                                 </Box>
                                             </Box>
-                                        </TableCell>
-                                    </TableRow>
-                                ))}
-                            </TableBody>
-                        </Table>
-                    </TableContainer>
-                    <Box sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+                                        </Grid>
+                                    </Grid>
+                                </Grid>
+                            ))}
+                        </Grid>
+
+                    }
+                    <Box sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', marginTop: '20px' }}>
                         <Button startIcon={<RotateLeftIcon />}>Load more</Button>
                     </Box>
                 </Box>
             </Paper >
+
             <Modal
                 open={open}
                 onClose={handleClose}
@@ -386,7 +536,7 @@ const Recentpost = () => {
                     </Box>
                     <Box sx={{ display: 'flex', marginBottom: '20px' }}>
                         <Box sx={{ marginRight: '20px', position: 'relative' }}>
-                            <img src={img_20220814} width="55px" height="55px" style={{ borderRadius: '50%' }} />
+                            <img src={img_20220814} alt="Noimage" width="55px" height="55px" style={{ borderRadius: '50%' }} />
                             {/* <FacebookOutlinedIcon sx={{position:'absolute', zIndex:'1' ,right:'0px', bottom:'0px'}}/> */}
                             <Box sx={{
                                 display: 'flex', justifyContent: 'center', alignItems: 'center', zIndex: '1', position: 'absolute', right: '0px', bottom: '0px', width: '25px', height: '25px', borderRadius: '50%', backgroundColor: 'white',
@@ -404,7 +554,7 @@ const Recentpost = () => {
                             </Box>
                         </Box>
                         <Box sx={{ marginRight: '20px', position: 'relative' }}>
-                            <img src={img_20220814} width="55px" height="55px" style={{ borderRadius: '50%', opacity: '50%' }} />
+                            <img src={img_20220814} alt="Noimage" width="55px" height="55px" style={{ borderRadius: '50%', opacity: '50%' }} />
                             {/* <FacebookOutlinedIcon sx={{position:'absolute', zIndex:'1' ,right:'0px', bottom:'0px'}}/> */}
                             <Box sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', zIndex: '1', position: 'absolute', right: '0px', bottom: '0px', width: '25px', height: '25px', borderRadius: '50%', backgroundColor: 'white' }}>
                                 <Box
@@ -460,7 +610,7 @@ const Recentpost = () => {
                                     cursor: 'pointer',
                                     padding: '10px', borderRadius: '50%',
                                     marginRight: '10px',
-                                    "&:hover": { backgroundColor: theme.palette.common.white }
+                                    "&:hover": { backgroundColor: '#EFEFEF' }
                                 }}>
                                 <InsertPhotoOutlinedIcon />
                             </Box>
@@ -468,7 +618,7 @@ const Recentpost = () => {
                                 sx={{
                                     cursor: 'pointer',
                                     padding: '10px', borderRadius: '50%',
-                                    "&:hover": { backgroundColor: theme.palette.common.white }
+                                    "&:hover": { backgroundColor: '#EFEFEF' }
                                 }}>
                                 <VideocamOutlinedIcon />
                             </Box>

@@ -9,9 +9,7 @@ import {
     FormControl,
     Select,
     Button,
-    useTheme,
     useMediaQuery,
-    Typography,
 } from '@mui/material';
 
 import { IncomeIcon } from "../../../components/Common/SvgStatic";
@@ -40,8 +38,7 @@ const Insights = () => {
     const classes = useStyles();
     const match1 = useMediaQuery('(min-width : 1200px)')
     const match2 = useMediaQuery('(min-width : 900px)')
-    const match3 = useMediaQuery('(min-width : 768px)')
-    const theme = useTheme();
+    const match3 = useMediaQuery('(min-width : 767px)')
 
     const [type, setType] = useState(1);
     const [overViewType, setOverViewType] = useState('customer');
@@ -79,90 +76,136 @@ const Insights = () => {
                         </Select>
                     </FormControl>
                 </Box>
-                <Grid container spacing={3} className={classes.dashPanel}>
-                    <Grid item md={3} sm={6} xs={12}>
-                        <Box sx={{ width: '48px', height: '48px', borderRadius: '50%', backgroundColor: '#B5E4CA', display: 'flex', justifyContent: 'center', alignItems: 'center', marginBottom: '24px' }}>
-                            <AccountCircleOutlinedIcon sx={{ width: '20px', height: '20px', }} />
-                        </Box>
-                        <Box sx={{ display: 'flex', justifyContent: 'between', alignItems: 'center', fontSize: '16px', fontWeight: '600', marginBottom: '8px' }}>
-                            People reached
-                            <Icon sx={{ marginLeft: '5px', display: 'flex', alignItems: 'center' }}>
-                                {TipIcon}
-                            </Icon>
-                        </Box>
-                        <Box sx={{ marginBottom: '8px', fontSize: '48px', fontWeight: '600' }}>
-                            256k
-                        </Box>
-                        <Box sx={{ display: 'flex' }}>
-                            <Box color="#83BF6E">
-                                <ArrowUpwardOutlinedIcon color="#83BF6E" />
-                                37.8%
+                <Grid container spacing={3} className={classes.customerList}>
+                    <Grid item md={3} sm={6} xs={12} className={classes.customerItem} sx={!match3 ? { display: 'flex', justifyContent: 'space-between' } : {}}>
+                        {
+                            match3 &&
+                            <Box className={classes.InsightIcon} sx={{ backgroundColor: '#B5E4CA' }}>
+                                <AccountCircleOutlinedIcon sx={{ width: '20px', height: '20px', }} />
                             </Box>
-                            <Box sx={{ fontSize: '12px', fontWeight: '700', color: '#555', marginLeft: '5px' }}>this week</Box>
+                        }
+                        <Box>
+                            <Box className={classes.InsightTitle}>
+                                People reached
+                                <Icon sx={{ marginLeft: '5px', display: 'flex', alignItems: 'center' }}>
+                                    {TipIcon}
+                                </Icon>
+                            </Box>
+                            <Box className={classes.InsigtValue}>
+                                256k
+                            </Box>
+                            <Box className={classes.IncDecState}>
+                                <Box color="#83BF6E">
+                                    <ArrowUpwardOutlinedIcon color="#83BF6E" />
+                                    37.8%
+                                </Box>
+                                <Box sx={{ fontSize: '12px', fontWeight: '700', color: '#555', marginLeft: '5px' }}>this week</Box>
+                            </Box>
                         </Box>
+                        {
+                            !match3 &&
+                            <Box className={classes.InsightIcon} sx={{ backgroundColor: '#B5E4CA', position: 'relative', }}>
+                                <AccountCircleOutlinedIcon sx={{ width: '20px', height: '20px', }} />
+                            </Box>
+                        }
                     </Grid>
-                    <Grid item md={3} sm={6} xs={12} sx={match3? { borderLeft: '1px solid #EFEFEF', borderRadius:'1px'}: {}}>
-                        <Box sx={{ width: '48px', height: '48px', borderRadius: '50%', backgroundColor: '#CABDFF', display: 'flex', justifyContent: 'center', alignItems: 'center', marginBottom: '24px' }}>
-                            <SwapVertOutlinedIcon sx={{ width: '20px', height: '20px' }} />
-                        </Box>
-                        <Box sx={{ display: 'flex', justifyContent: 'between', alignItems: 'center', fontSize: '16px', fontWeight: '600', marginBottom: '8px' }}>
-                            Engagement
-                            <Icon sx={{ marginLeft: '5px', display: 'flex', alignItems: 'center' }}>
-                                {TipIcon}
-                            </Icon>
-                        </Box>
-                        <Box sx={{ marginBottom: '8px', fontSize: '48px', fontWeight: '600' }}>
-                            1.2x
-                        </Box>
-                        <Box sx={{ display: 'flex' }}>
-                            <Box color="#83BF6E">
-                                <ArrowUpwardOutlinedIcon color="#83BF6E" />
-                                37.8%
+                    <Grid item md={3} sm={6} xs={12} className={classes.customerItem} sx={!match3 ? { display: 'flex', justifyContent: 'space-between' } : {}}>
+                        {
+                            match3 &&
+                            <Box className={classes.InsightIcon} sx={{ backgroundColor: '#CABDFF' }}>
+                                <SwapVertOutlinedIcon sx={{ width: '20px', height: '20px' }} />
                             </Box>
-                            <Box sx={{ fontSize: '12px', fontWeight: '700', color: '#555', marginLeft: '5px' }}>this week</Box>
+                        }
+                        <Box>
+                            <Box className={classes.InsightTitle}>
+                                Engagement
+                                <Icon sx={{ marginLeft: '5px', display: 'flex', alignItems: 'center' }}>
+                                    {TipIcon}
+                                </Icon>
+                            </Box>
+                            <Box className={classes.InsigtValue}>
+                                1.2x
+                            </Box>
+                            <Box className={classes.IncDecState}>
+                                <Box color="#83BF6E">
+                                    <ArrowUpwardOutlinedIcon color="#83BF6E" />
+                                    37.8%
+                                </Box>
+                                <Box sx={{ fontSize: '12px', fontWeight: '700', color: '#555', marginLeft: '5px' }}>this week</Box>
+                            </Box>
                         </Box>
+                        {
+                            !match3 &&
+                            <Box className={classes.InsightIcon} sx={{ backgroundColor: '#CABDFF', position: 'relative' }}>
+                                <SwapVertOutlinedIcon sx={{ width: '20px', height: '20px' }} />
+                            </Box>
+                        }
                     </Grid>
-                    <Grid item md={3} sm={6} xs={12} sx={match2?{ borderLeft: '1px solid #EFEFEF', borderRadius: '1px'}:{}}>
-                        <Box sx={{ width: '48px', height: '48px', borderRadius: '50%', backgroundColor: '#FFBC99', display: 'flex', justifyContent: 'center', alignItems: 'center', marginBottom: '24px' }}>
-                            <QuestionAnswerOutlinedIcon sx={{ width: '20px', height: '20px', }} />
-                        </Box>
-                        <Box sx={{ display: 'flex', justifyContent: 'between', alignItems: 'center', fontSize: '16px', fontWeight: '600', marginBottom: '8px' }}>
-                            Comments
-                            <Icon sx={{ marginLeft: '5px', display: 'flex', alignItems: 'center' }}>
-                                {TipIcon}
-                            </Icon>
-                        </Box>
-                        <Box sx={{ marginBottom: '8px', fontSize: '48px', fontWeight: '600' }}>
-                            128
-                        </Box>
-                        <Box sx={{ display: 'flex' }}>
-                            <Box color="#83BF6E">
-                                <ArrowUpwardOutlinedIcon color="#83BF6E" />
-                                37.8%
+                    <Grid item md={3} sm={6} xs={12} className={classes.customerItem} sx={!match3 ? { display: 'flex', justifyContent: 'space-between' } : {}}>
+                        {
+                            match3 && <Box className={classes.InsightIcon} sx={{ backgroundColor: '#FFBC99' }}>
+                                <QuestionAnswerOutlinedIcon sx={{ width: '20px', height: '20px', }} />
                             </Box>
-                            <Box sx={{ fontSize: '12px', fontWeight: '700', color: '#555', marginLeft: '5px' }}>this week</Box>
+                        }
+                        <Box>
+                            <Box className={classes.InsightTitle}>
+                                Comments
+                                <Icon sx={{ marginLeft: '5px', display: 'flex', alignItems: 'center' }}>
+                                    {TipIcon}
+                                </Icon>
+                            </Box>
+                            <Box className={classes.InsigtValue}>
+                                128
+                            </Box>
+                            <Box className={classes.IncDecState}>
+                                <Box color="#83BF6E">
+                                    <ArrowUpwardOutlinedIcon color="#83BF6E" />
+                                    37.8%
+                                </Box>
+                                <Box sx={{ fontSize: '12px', fontWeight: '700', color: '#555', marginLeft: '5px' }}>this week</Box>
+                            </Box>
                         </Box>
+                        {
+                            !match3 && <Box className={classes.InsightIcon} sx={{ backgroundColor: '#FFBC99' }}>
+                                <QuestionAnswerOutlinedIcon sx={{ width: '20px', height: '20px', }} />
+                            </Box>
+                        }
                     </Grid>
-                    <Grid item md={3} sm={3} xs={12} sx={match3?{ borderLeft: '1px solid #EFEFEF', borderRadius: '1px' }:{}}>
-                        <Box sx={{ width: '48px', height: '48px', borderRadius: '50%', backgroundColor: '#B1E5FC', display: 'flex', justifyContent: 'center', alignItems: 'center', marginBottom: '24px' }}>
-                            <MouseOutlinedIcon sx={{ width: '20px', height: '20px', }} />
-                        </Box>
-                        <Box sx={{ display: 'flex', justifyContent: 'between', alignItems: 'center', fontSize: '16px', fontWeight: '600', marginBottom: '8px' }}>
-                            Link
-                            <Icon sx={{ marginLeft: '5px', display: 'flex', alignItems: 'center' }}>
-                                {TipIcon}
-                            </Icon>
-                        </Box>
-                        <Box sx={{ marginBottom: '8px', fontSize: '48px', fontWeight: '600' }}>
-                            80
-                        </Box>
-                        <Box sx={{ display: 'flex' }}>
-                            <Box color="#83BF6E">
-                                <ArrowUpwardOutlinedIcon color="#83BF6E" />
-                                37.8%
+                    <Grid item md={3} sm={3} xs={12} className={classes.customerItem} sx={!match3 ? { display: 'flex', justifyContent: 'space-between' } : {}}>
+                        {
+                            match3 &&
+                            <Box className={classes.InsightIcon} sx={{ backgroundColor: '#B5E4CA' }}>
+                                <MouseOutlinedIcon />
                             </Box>
-                            <Box sx={{ fontSize: '12px', fontWeight: '700', color: '#555', marginLeft: '5px' }}>this week</Box>
+                        }
+                        <Box>
+                            <Box className={classes.InsightTitle}>
+                                Link
+                                <Icon sx={{ marginLeft: '5px', display: 'flex', alignItems: 'center' }}>
+                                    {TipIcon}
+                                </Icon>
+                            </Box>
+                            <Box className={classes.InsigtValue}>
+                                80
+                            </Box>
+                            <Box className={classes.IncDecState}>
+                                <Box sx={{
+                                        "& .MuiSvgIcon-root": {
+                                            color: '#83BF6E',
+                                        }
+                                    }}>
+                                    <ArrowUpwardOutlinedIcon  />
+                                    37.8%
+                                </Box>
+                                <Box sx={{ fontSize: '12px', fontWeight: '700', color: '#555', marginLeft: '5px' }}>this week</Box>
+                            </Box>
                         </Box>
+                        {
+                            !match3 &&
+                            <Box className={classes.InsightIcon} sx={{ backgroundColor: '#B5E4CA' }}>
+                                <MouseOutlinedIcon />
+                            </Box>
+                        }
                     </Grid>
                 </Grid>
             </Paper>

@@ -38,6 +38,11 @@ const useStyles = makeStyles((theme) => ({
                 color : '#B5E4CA',
                 marginRight : '20px'
             }
+        },
+
+        ['@media (max-width:900px)'] : {
+            paddingLeft : '30px',
+            height : 'unset'
         }
     },
     proTip : {
@@ -48,7 +53,12 @@ const useStyles = makeStyles((theme) => ({
     },
 }))
 
-const Pro = () => {
+const Pro = (props) => {
+
+    const {
+        match900
+    } = props;
+
     const classes = useStyles() ;
 
     return (
@@ -70,10 +80,12 @@ const Pro = () => {
                         <Box sx={{fontSize : '64px', mr : 4}}>
                             12%
                         </Box>
-                        <Box sx={{color : '#9A9FA5', mr : 10}}>
+                        <Box sx={{color : '#9A9FA5', mr : match900 ? 10 : 0}}>
                             of the monthly income you earn on the market
                         </Box>
-                        <ErrorIcon />
+                        {
+                            match900 && <ErrorIcon />
+                        }
                     </Box>
                         
                     <Divider />

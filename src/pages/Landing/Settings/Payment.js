@@ -36,12 +36,16 @@ const useStyles = makeStyles((theme) => ({
     paymentTip : {
         width : '16px',
         height : '32px',
-        background : '#FFBC99#B5E4CA',
+        background : '#B5E4CA',
         borderRadius : '4px',
     },
     saveButton : {
         background : '#2A85FF !important',
         border : 'none !important',
+
+        ['@media (max-width:600px)'] : {
+            width : '100% !important',
+        }
     }
 }))
 

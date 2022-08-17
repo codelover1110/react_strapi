@@ -77,7 +77,7 @@ const useStyles = makeStyles((theme) => ({
             width : '25px',
             height : '25px',
             marginLeft : '30px',
-            ['@media (max-width:750px)'] : {
+            "@media (max-width:750px)" : {
                 marginLeft : 0
             }
         },
@@ -297,7 +297,6 @@ const Header = (props) => {
                     
                     { theme.palette.mode === 'light' ? LogoLightIcon : LogoDarkIcon } 
                 </ListItem>
-
                 <Box sx={{padding : '0px 10px', mb : 10}}>
                 {
                     menuList.map((element, index) => {

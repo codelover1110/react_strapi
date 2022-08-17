@@ -15,6 +15,7 @@ import Upgrade from "../pages/Landing/Upgrade";
 import Message from "../pages/Landing/Message";
 import Promote from "../pages/Landing/Promote";
 import Notification from "./Notification";
+import ExploreCreator from "../pages/Landing/ExploreCreator";
 
 const Routing = () => {
     return (
@@ -28,6 +29,7 @@ const Routing = () => {
             <Route path="/message" element={<Message />} />
             <Route path="/promote/*" element={<Promote />} />
             <Route path="/notification/*" element={<Notification />} />
+            <Route path="/exploreCreator/*" element={<ExploreCreator/>}/>
         </Routes>
     );
 }

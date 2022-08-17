@@ -38,6 +38,11 @@ const useStyles = makeStyles((theme) => ({
                 color : '#B5E4CA',
                 marginRight : '20px'
             }
+        },
+
+        ['@media (max-width:900px)'] : {
+            paddingRight : '30px',
+            height : 'unset'
         }
     },
     listTip : {
@@ -48,13 +53,18 @@ const useStyles = makeStyles((theme) => ({
     },
 }))
 
-const Lite = () => {
+const Lite = (props) => {
+    
+    const {
+        match900
+    } = props;
+
     const classes = useStyles() ;
 
     return (
         <Box className={classes.root}>
             <Paper>
-                <Box>
+                <Box sx={{mb : 4}}>
                     <Box sx={{display : 'flex', alignItems : 'center', mb : 3}}>
                         <Box className={classes.listTip} />
                         <Box sx={{fontSize : '22px', fontWeight : 'bold', ml : 2}}> Lite </Box>
@@ -70,10 +80,12 @@ const Lite = () => {
                         <Box sx={{fontSize : '64px', mr : 4}}>
                             8%
                         </Box>
-                        <Box sx={{color : '#9A9FA5', mr : 10}}>
+                        <Box sx={{color : '#9A9FA5', mr : match900 ? 10 : 0}}>
                             of the monthly income you earn on the market
                         </Box>
-                        <ErrorIcon />
+                        {
+                            match900 && <ErrorIcon />
+                        }
                     </Box>
                         
                     <Divider />
