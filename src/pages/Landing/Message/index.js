@@ -86,10 +86,14 @@ const useStyles = makeStyles((theme) => ({
         background : theme.palette.grey.A200,
         borderRadius : '12px 12px 0px 0px',
         padding : '30px',
+
+        ['@media (max-width:900px)'] : {
+            padding : '10px'
+        }
     },
     moreIcon : {
-        width : '50px',
-        height : '50px',
+        minWidth : '40px',
+        minHeight : '40px',
         display : 'flex',
         justifyContent : 'center',
         alignItems : 'center',
@@ -101,7 +105,7 @@ const useStyles = makeStyles((theme) => ({
     },
     drawer: {
         width: '100%',
-        zIndex: '999999999999999 !important',
+        zIndex: '1000000 !important',
         "& .MuiPaper-root": {
             width: '100%',
         },
@@ -116,13 +120,22 @@ const useStyles = makeStyles((theme) => ({
 
         "& svg" : {
             marginRight : '10px'
-        }
+        },
+        "& .MuiButton-root" : {
+            width : '300px',
+            height : '48px',
+            fontSize : '15px',
+            fontWeight : 'bold',
+            textTransform : 'unset',
+            border : '2px solid #272B30',
+            borderRadius : '12px',
+            padding : '10px',
+        },
     },
     menuBody: {
-        zIndex: 9999,
+        zIndex : 1000000000
     },
     menuDiv: {
-        height: '100%',
         "& a": {
             textDecoration: 'none ',
             color: 'white',
@@ -174,7 +187,7 @@ const Message = () => {
         setChangeChat(type);
     }
 
-    const list = () => {
+    const list = () => (
 
         <Box 
             sx={{width : 'auto'}}
@@ -182,25 +195,88 @@ const Message = () => {
             className={classes.menuBody}
         >
             
-            <List className={classes.menuDiv} >
-                <ListItem sx={{display : 'flex', justifyContent : 'space-between'}}>
-                    <IconButton onClick={() => handleChangeChat(false)}>
-                        <CloseIcon />
-                    </IconButton>
-                    
-                </ListItem>
+            <Box className={classes.orval}>
+                <Box className={classes.topContent}>
+                    <Box>
+                        Orval Casper
+                    </Box>
+                    <Box sx={{display : 'flex'}}>
+                        <Box className={classes.moreIcon}>
+                            <MoreHorizRoundedIcon />
+                        </Box>
+                        <IconButton onClick={() => handleChangeChat(false)}>
+                            <CloseIcon/>
+                        </IconButton>
+                    </Box>
+                </Box>
+
+                <Box sx={{display : 'flex', justifyContent : 'center', p : 3}}>
+                    <Button variant="outlined">
+                        Load conversation
+                    </Button>
+                </Box>
+
+                <List>
+                    {
+                        messageList.map((element,index) => {
+                            return(
+                                index === 1 && <ListItem key={index}>
+                                    <Box component={'img'} src={element.image} sx={{mr : 1}}/>
+                                    <Box sx={{width : '100%'}}>
+                                        <Box sx={{display : 'flex', justifyContent : 'space-between'}}>
+                                            <Box>
+                                                {element.name}
+                                            </Box>
+                                            <Box sx={{display : 'flex', alignItems : 'center'}}>
+                                                {element.time}
+                                                <Box sx={{width : '12px', height : '12px', background : '#2A85FF', borderRadius : '50%', ml : 1}} />
+                                            </Box>
+                                        </Box>
+                                        <Box sx={{color : '#6F767E'}}>
+                                            When do you release the coded for the Fleet - Travel kit?
+                                        </Box>
+                                        <Box>
+                                            https://ui8.net/product-link
+                                        </Box>
+                                    </Box>
+                                </ListItem>
+                            )
+                        })
+                    }
+                </List>
+
                 <ListItem>
-                    sfsdf
+                    <Box component={'img'} src={Avartar_Image} sx={{width : '58px', height : '58px', mr : 2}}/>
+                    <Box>
+                        <Box>
+                            Britney Beer
+                            <Box component={'span'}> 11:59AM </Box>
+                        </Box>
+                        <Box>
+                            Hi @orval, thanks for contacting.
+                            Yes, I'm working on it. It would be released next 2 weeks. You could check the progress here: https://ui8.net/progress
+                            <br/><br/>
+                            Thanks for your patience and understanding. 🙌
+                            Regards,
+                            <br/><br/>
+                            Br
+                        </Box>
+                    </Box>
                 </ListItem>
-                <ListItem>
-                    sfsdf
-                </ListItem>
-                <ListItem>
-                    sfsdf
-                </ListItem>
-            </List>
+
+                    <TextField 
+                        InputProps={{
+                            endAdornment: <InputAdornment position="end"> <SearchIcon style={{ fill: "#6F767E" }} /> </InputAdornment>
+                        }}
+                        variant="outlined"
+                        placeholder="Search or type a command"
+                        size="small"
+                        sx={{"& .MuiOutlinedInput-notchedOutline" : {border : 'none'}, "&. Mui-focused" : {border : 'none'}}}
+                    />
+            </Box>
         </Box>
-    }
+    )
+
     return (
         <Box className={classes.root}>
             <Box className={classes.dashboard}>
@@ -348,7 +424,7 @@ const Message = () => {
                     }
                 </Grid>
             </Paper>
-{/* 
+
             <Drawer
                 anchor='left'
                 open={changeChat}
@@ -356,7 +432,7 @@ const Message = () => {
                 className={classes.drawer}
             >
                 {list()}
-            </Drawer> */}
+            </Drawer>
         </Box>
     );
 }

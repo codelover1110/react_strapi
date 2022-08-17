@@ -87,7 +87,7 @@ const useStyles = makeStyles((theme) => ({
     },
     drawer: {
         width: '100%',
-        zIndex: '999999999999999 !important',
+        zIndex: '1000 !important',
         "& .MuiPaper-root": {
             width: '100%',
         },
