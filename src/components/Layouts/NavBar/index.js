@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom';
 
 import { connect } from 'react-redux' ;
 
-import { HomeIcon, ProductsIcon, CustomersIcon, ShopIcon, LogoLightIcon, LogoDarkIcon, IncomeMenuIcon, PromoteIcon } from '../../Common/SvgStatic';
+import { HomeIcon, ShopIcon, LogoLightIcon, LogoDarkIcon, IncomeMenuIcon, PromoteIcon } from '../../Common/SvgStatic';
 import { ColorModeContext } from '../../../utils/theme';
 import { getItem, setItem } from '../../../utils/helper';
 
@@ -16,7 +16,7 @@ import LightModeIcon from '@mui/icons-material/LightMode';
 import DarkModeOutlinedIcon from '@mui/icons-material/DarkModeOutlined';
 
 import {
-    Box, Button, Divider, List, ListItem , MenuItem, useTheme, Accordion, AccordionSummary, AccordionDetails, useMediaQuery
+    Box, Divider, List, ListItem , useTheme, Accordion, AccordionSummary, AccordionDetails, useMediaQuery
 } from '@mui/material' ;
   
 
@@ -28,7 +28,6 @@ const useStyles = makeStyles((theme) => ({
         justifyContent : 'space-between',
         background : theme.palette.background.bg,
         padding : '24px',
-        
         "& .MuiListItem-root" : {
             display : 'flex',
             alignItems : 'center',
@@ -38,15 +37,14 @@ const useStyles = makeStyles((theme) => ({
                 borderRadius : '12px',
             }
         },
-
         "& svg" : {
             marginRight : '10px'
         },
-        ['@media (max-width:1200px)'] : {
+        "@media (max-width:1200px)" : {
             width  : '100px',
             padding : '10px'
         },
-        ['@media (max-width:900px)'] : {
+        "@media (max-width:900px)" : {
             display : 'none'
         }
     } ,
@@ -72,26 +70,11 @@ const menuList = [
         icon : HomeIcon,
         link : '/home',
     },
-    // {
-    //     label : 'Products',
-    //     icon : ProductsIcon,
-    //     link : '/product',
-    // },
-    // {
-    //     label : 'Customers',
-    //     icon : CustomersIcon,
-    //     link : '/customer',
-    // },
     {
         label : 'Shop',
         icon : ShopIcon,
         link : '/shop',
     },
-    // {
-    //     label : 'Income',
-    //     icon : IncomeMenuIcon,
-    //     link : '/income',
-    // },
     {
         label : 'Promote',
         icon : PromoteIcon,
@@ -130,6 +113,10 @@ const productSubMenu = [
 ]
 
 const NavBar = (props) => {
+
+    const {
+        handleOpenSideVideo
+    } = props;
 
     const classes = useStyles();
     const match1200 = useMediaQuery('(min-width : 1200px)') ;
@@ -212,13 +199,13 @@ const NavBar = (props) => {
             <Box>
                 <Divider />
 
-                <Box sx={{display : 'flex', justifyContent : match1200 ? 'space-between' : 'center', mt : 2}}>
-                    <Box sx={{display : 'flex', mb : 2}}>
+                <Box sx={{display : 'flex', justifyContent : match1200 ? 'space-between' : 'center', cursor: 'pointer', mt : 2}}>
+                    <Box sx={{display : 'flex', mb : 2}} onClick={handleOpenSideVideo}>
                         <HelpOutlineIcon sx={{mr : 1}}/>
                         {
                             match1200 &&
                             <Box>
-                                Help & getting started
+                                Help &amp; getting started
                             </Box>
                         }
                     </Box>
@@ -255,6 +242,7 @@ const NavBar = (props) => {
 }
 
 NavBar.propTypes = {
+
 }
 
 const mapStateToProps = state => ({

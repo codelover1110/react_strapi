@@ -17,9 +17,10 @@ export const useStyles = makeStyles((theme) => ({
     contentHeader: {
         display: 'flex',
         justifyContent: 'space-between',
-        borderBottom: 1,
+        borderBottom: '1px solid #EFEFEF',
         paddingBottom: 20,
         borderColor: 'divider',
+        borderRadius: '1px'
     },
     tabButton: {
         display: 'flex',
@@ -39,6 +40,6 @@ export const useStyles = makeStyles((theme) => ({
         },
         "& .MuiOutlinedInput-root": {
             height: '40px'
-        }
+        },
     }
 }));

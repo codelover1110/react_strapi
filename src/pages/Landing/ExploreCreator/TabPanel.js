@@ -4,14 +4,13 @@ import PropTypes from 'prop-types';
 //@mui material
 import {
     Box,
-    Typography
 } from '@mui/material';
 
 const TabPanel = (Props) => {
     const { children, value, index, ...other } = Props;
 
     return (
-        <div
+        <Box
             role="tabpanel"
             hidden={value !== index}
             id={`simple-tabpanel-${index}`}
@@ -19,10 +18,10 @@ const TabPanel = (Props) => {
             {...other}>
             {value === index && (
                 <Box sx={{ p: 3 }}>
-                    <Typography>{children}</Typography>
+                    <Box>{children}</Box>
                 </Box>
             )}
-        </div>
+        </Box>
     )
 };
 

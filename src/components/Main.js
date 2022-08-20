@@ -12,7 +12,7 @@ import {
 import { makeStyles } from '@mui/styles';
 import Header from './Layouts/Header';
 import NavBar from './Layouts/NavBar';
-
+import VideoSideBar from './Common/VideoSideBar';
 
 const useStyles = makeStyles((theme) => ({
     root : {
@@ -40,17 +40,31 @@ const Main = (props) => {
             innerText : "efefef"
         }
     }) ;
+    const [moreGrid, setMoreGrid] = useState(0);
+    const handleOpenSideVideo=()=>{
+        setMoreGrid(3)
+    };
+    const handleCloseVideoSideBar = () => {
+        setMoreGrid(0)
+    };
 
     return (
         <Box className={classes.root} ref={scrollTop}>
+            
             <Grid container>
+                {
+                    moreGrid !== 0 &&
+                    <Grid item xs={match1200? moreGrid: match ? moreGrid: 12} >
+                        <VideoSideBar handleCloseVideoSideBar={handleCloseVideoSideBar}/>
+                    </Grid>
+                }
                 <Grid item xs={match1200 ? 2.5 : match ? 1 : 0}>
                     {
                         match &&
-                        <NavBar />
+                        <NavBar handleOpenSideVideo = {handleOpenSideVideo}/>
                     }
                 </Grid>
-                <Grid item xs={match1200 ? 9.5 : match ? 11 : 12}>
+                <Grid item xs={match1200 ? 9.5 - moreGrid : match ? 11-moreGrid : 12}>
                     <Header />
                     <Routing />
                 </Grid>

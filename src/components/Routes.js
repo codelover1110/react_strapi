@@ -15,7 +15,9 @@ import Upgrade from "../pages/Landing/Upgrade";
 import Message from "../pages/Landing/Message";
 import Promote from "../pages/Landing/Promote";
 import Notification from "./Notification";
+import Shop from "../pages/Landing/Shop";
 import ExploreCreator from "../pages/Landing/ExploreCreator";
+import Affiliate from "../pages/Landing/Affiliate"
 
 const Routing = () => {
     return (
@@ -29,7 +31,10 @@ const Routing = () => {
             <Route path="/message" element={<Message />} />
             <Route path="/promote/*" element={<Promote />} />
             <Route path="/notification/*" element={<Notification />} />
-            <Route path="/exploreCreator/*" element={<ExploreCreator/>}/>
+            <Route path="/shop/*" element={<Shop />} />
+            <Route path="/exploreCreators/*" element={<ExploreCreator/>}/>
+            <Route path="/affiliate/*" element={<Affiliate/>}/>
+
         </Routes>
     );
 }

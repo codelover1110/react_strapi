@@ -71,7 +71,7 @@ const ProfilePopover = (props) => {
                         { AffiliateIcon }
                         Affiliate center
                     </ListItem>
-                    <ListItem onClick={() => handleChangeNavigate('/explore')}>
+                    <ListItem onClick={() => handleChangeNavigate('/exploreCreators')}>
                         { ExploreIcon }
                         Explore authors
                     </ListItem>
