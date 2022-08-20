@@ -2,6 +2,9 @@ import React, { useState } from "react";
 
 import TotalCustomers from "./TotalCustomers";
 import TrafficChannel from "./TrafficChannel";
+import ActiveCustomers from "./ActiveCustomers";
+import ShareProducts from "./ShareProducts";
+import RefundRequests from "./RefundRequests";
 
 import {
     Box,
@@ -10,6 +13,7 @@ import {
 } from '@mui/material' ;
 
 import { makeStyles } from '@mui/styles' ;
+import TopDevice from "./TopDevice";
 
 const useStyles = makeStyles((theme) => ({
     root : {
@@ -38,8 +42,12 @@ const Customers = () => {
                 <Grid item xs={match ? 8 : 12}>
                     <TotalCustomers />
                     <TrafficChannel />
+                    <ActiveCustomers />
+                    <ShareProducts />
                 </Grid>
                 <Grid item xs={match ? 4 : 12}>
+                    <RefundRequests />
+                    <TopDevice />
                 </Grid>
             </Grid>
         </Box>

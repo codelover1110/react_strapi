@@ -289,6 +289,11 @@ const Header = (props) => {
         console.log(mode, getItem('userThemeMode'));
     };
 
+    const handleChangeNavigate = (url) => {
+        navigate(url);
+        setOpen(false);
+    }
+
     const list = () => (
         <Box
             sx={{width : 'auto'}}
@@ -371,46 +376,46 @@ const Header = (props) => {
                         id="panel1a-header"
                         sx={{"&:hover" : {background : theme.palette.grey.A200}}}
                     >
-                    <Box sx={{display : 'flex', alignItems : 'center'}}>
-                        <Box component={'img'} src={Avatar_Image} sx={{mr : 2}}/>
-                        <Box>
+                        <Box sx={{display : 'flex', alignItems : 'center'}}>
+                            <Box component={'img'} src={Avatar_Image} sx={{mr : 2}}/>
                             <Box>
-                                Tran Mau Tri Tam
-                            </Box>
-                            <Box>
-                                Visual Designer
+                                <Box>
+                                    Tran Mau Tri Tam
+                                </Box>
+                                <Box>
+                                    Visual Designer
+                                </Box>
                             </Box>
                         </Box>
-                    </Box>
                     </AccordionSummary>
                     <AccordionDetails>
                         <List>
-                            <ListItem>
+                            <ListItem onClick={() => handleChangeNavigate('/profile')}>
                                 Profile
                             </ListItem>
-                            <ListItem>
+                            <ListItem onClick={() => handleChangeNavigate('/editprofile')}>
                                 Edit profile
                             </ListItem>
-                            <ListItem sx={{fontWeight : 'bold', mt : '20px'}}>
+                            <ListItem onClick={() => handleChangeNavigate('/analytics')} sx={{fontWeight : 'bold', mt : '20px'}}>
                                 { AnalyticsIcon }
                                 Analytics
                             </ListItem>
-                            <ListItem>
+                            <ListItem onClick={() => handleChangeNavigate('/affiliate')}>
                                 { AffiliateIcon }
                                 Affiliate center
                             </ListItem>
-                            <ListItem>
+                            <ListItem onClick={() => handleChangeNavigate('/exploreCreators')}>
                                 { ExploreIcon }
                                 Explore authors
                             </ListItem>
-                            <ListItem sx={{color : '#8E59FF', mt : '20px'}}>
+                            <ListItem onClick={() => handleChangeNavigate('/upgrade')} sx={{color : '#8E59FF', mt : '20px'}}>
                                 { UpgradeIcon }
                                 Upgrade to Pro
                             </ListItem>
-                            <ListItem sx={{mt : '20px'}}>
+                            <ListItem onClick={() => handleChangeNavigate('/settings')} sx={{mt : '20px'}}>
                                 Account settings
                             </ListItem>
-                            <ListItem>
+                            <ListItem onClick={() => handleChangeNavigate('/logout')}>
                                 Log out
                             </ListItem>
                         </List>

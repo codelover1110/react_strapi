@@ -164,7 +164,7 @@ const ShopMarket = (props) => {
                             return(
                                 <Grid key={index} item xs={match1400 ? 4 : match900 ? 6 : 12}>
                                     <Box className={classes.card}>
-                                        <Box className={classes.cardImage} onMouseOver={() => setDropFilter(true)} onMouseLeave={() => setDropFilter(false)}>
+                                        <Box className={classes.cardImage}>
                                             <Box component={'img'} src={element.image}/>
                                             <Box className={classes.backdropFilter}>
                                                 <Box className={classes.editBtn} onClick={() => setOpen(true)}>

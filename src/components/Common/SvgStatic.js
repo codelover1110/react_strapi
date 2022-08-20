@@ -133,11 +133,11 @@ export const RefundIcon = <svg xmlns="http://www.w3.org/2000/svg" width="48" hei
 </svg>
 
 export const AnalyticsIcon = <svg id="UI_icon_bar_chart_filled" data-name="UI icon/bar_chart/filled" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
-<path id="Vector_606_Stroke_" data-name="Vector 606 (Stroke)" d="M1,0A1,1,0,0,1,2,1V17a1,1,0,0,0,1,1H19a1,1,0,0,1,0,2H3a3,3,0,0,1-3-3V1A1,1,0,0,1,1,0Z" transform="translate(2 2)" fill="#1a1d1f"/>
-<path id="Vector_642_Stroke_" data-name="Vector 642 (Stroke)" d="M1,0A1,1,0,0,1,2,1V9A1,1,0,0,1,0,9V1A1,1,0,0,1,1,0Z" transform="translate(6 8)" fill="#1a1d1f"/>
-<path id="Vector_643_Stroke_" data-name="Vector 643 (Stroke)" d="M1,0A1,1,0,0,1,2,1V3A1,1,0,0,1,0,3V1A1,1,0,0,1,1,0Z" transform="translate(10 14)" fill="#1a1d1f"/>
-<path id="Vector_644_Stroke_" data-name="Vector 644 (Stroke)" d="M1,0A1,1,0,0,1,2,1V13a1,1,0,0,1-2,0V1A1,1,0,0,1,1,0Z" transform="translate(14 4)" fill="#1a1d1f"/>
-<path id="Vector_645_Stroke_" data-name="Vector 645 (Stroke)" d="M1,0A1,1,0,0,1,2,1V7A1,1,0,0,1,0,7V1A1,1,0,0,1,1,0Z" transform="translate(18 10)" fill="#1a1d1f"/>
+<path id="Vector_606_Stroke_" data-name="Vector 606 (Stroke)" d="M1,0A1,1,0,0,1,2,1V17a1,1,0,0,0,1,1H19a1,1,0,0,1,0,2H3a3,3,0,0,1-3-3V1A1,1,0,0,1,1,0Z" transform="translate(2 2)" fill="#6f767e"/>
+<path id="Vector_642_Stroke_" data-name="Vector 642 (Stroke)" d="M1,0A1,1,0,0,1,2,1V9A1,1,0,0,1,0,9V1A1,1,0,0,1,1,0Z" transform="translate(6 8)" fill="#6f767e"/>
+<path id="Vector_643_Stroke_" data-name="Vector 643 (Stroke)" d="M1,0A1,1,0,0,1,2,1V3A1,1,0,0,1,0,3V1A1,1,0,0,1,1,0Z" transform="translate(10 14)" fill="#6f767e"/>
+<path id="Vector_644_Stroke_" data-name="Vector 644 (Stroke)" d="M1,0A1,1,0,0,1,2,1V13a1,1,0,0,1-2,0V1A1,1,0,0,1,1,0Z" transform="translate(14 4)" fill="#6f767e"/>
+<path id="Vector_645_Stroke_" data-name="Vector 645 (Stroke)" d="M1,0A1,1,0,0,1,2,1V7A1,1,0,0,1,0,7V1A1,1,0,0,1,1,0Z" transform="translate(18 10)" fill="#6f767e"/>
 </svg>
 
 export const AffiliateIcon = <svg id="UI_icon_ticket_light" data-name="UI icon/ticket/light" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
