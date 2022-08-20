@@ -18,6 +18,7 @@ import Notification from "./Notification";
 import Shop from "../pages/Landing/Shop";
 import ExploreCreator from "../pages/Landing/ExploreCreator";
 import Affiliate from "../pages/Landing/Affiliate"
+import Customers from "../pages/Landing/Customer/Overview";
 
 const Routing = () => {
     return (
@@ -34,6 +35,7 @@ const Routing = () => {
             <Route path="/shop/*" element={<Shop />} />
             <Route path="/exploreCreators/*" element={<ExploreCreator/>}/>
             <Route path="/affiliate/*" element={<Affiliate/>}/>
+            <Route path="/customers/overview" element={<Customers/>}/>
 
         </Routes>
     );

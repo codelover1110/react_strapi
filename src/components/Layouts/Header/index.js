@@ -8,7 +8,7 @@ import { useNavigate } from 'react-router-dom';
 import { ColorModeContext } from '../../../utils/theme';
 import { getItem, setItem } from '../../../utils/helper';
 import Avatar_Image from '../../../assets/Home/Avatar.png';
-import { HomeIcon, ProductsIcon, CustomersIcon, ShopIcon, SearchADRIcon, LogoLightIcon, LogoDarkIcon, AffiliateIcon, AnalyticsIcon, ExploreIcon, UpgradeIcon } from '../../Common/SvgStatic';
+import { HomeIcon, ProductsIcon, CustomersIcon, ShopIcon, SearchADRIcon, LogoLightIcon, LogoDarkIcon, AffiliateIcon, AnalyticsIcon, ExploreIcon, UpgradeIcon, IncomeMenuIcon, PromoteIcon } from '../../Common/SvgStatic';
 import SearchPopover from './SearchPopover';
 import ProfilePopover from './ProfilePopover';
 import NotificationPopover from './NotificationPopover';
@@ -156,29 +156,24 @@ const menuList = [
         icon : HomeIcon,
         link : '/home',
     },
-    // {
-    //     label : 'Products',
-    //     icon : ProductsIcon,
-    //     link : '/product',
-    // },
-    // {
-    //     label : 'Customers',
-    //     icon : CustomersIcon,
-    //     link : '/customer',
-    // },
+    {
+        label : 'Customers',
+        icon : CustomersIcon,
+        link : '/shop',
+    },
     {
         label : 'Shop',
         icon : ShopIcon,
         link : '/shop',
     },
-    // {
-    //     label : 'Income',
-    //     icon : CustomersIcon,
-    //     link : '/income',
-    // },
+    {
+        label : 'Income',
+        icon : IncomeMenuIcon,
+        link : '/promote',
+    },
     {
         label : 'Promote',
-        icon : CustomersIcon,
+        icon : PromoteIcon,
         link : '/promote',
     },
 ]
@@ -194,23 +189,34 @@ const homeSubMenu = [
     },
 ]
 
-const productSubMenu = [
+const customerSubMenu = [
     {
-        label : 'Dashboard',
-        link : '/product/dashboard'
+        label : 'Overview',
+        link : '/customer/overview'
     },
     {
-        label : 'Drafts',
-        link : '/product/drafts'
+        label : 'Customer list',
+        link : '/customer/list'
+    },
+]
+
+const incomeSubMenu = [
+    {
+        label : 'Earning',
+        link : '/income/earning'
     },
     {
-        label : 'Released',
-        link : '/product/released'
+        label : 'Refunds',
+        link : '/income/refunds'
     },
     {
-        label : 'Scheduled',
-        link : '/product/scheduled'
+        label : 'Payouts',
+        link : '/income/payouts'
     },
+    {
+        label : 'Statements',
+        link : '/income/statements'
+    }
 ]
 
 const Header = (props) => {
@@ -324,17 +330,27 @@ const Header = (props) => {
                                         element.label === "Home" &&
                                         homeSubMenu.map((row, index) => {
                                             return(
-                                                <Box key={index} onClick={() => handleMenuChange(row)} sx={{px : 2, py : 1, cursor : 'pointer', "&:hover" : {background : theme.palette.grey.A200}}}>
+                                                <Box key={index} onClick={() => handleMenuChange(row)} sx={{px : 5, py : 1, cursor : 'pointer', "&:hover" : {background : theme.palette.grey.A200}}}>
                                                     {row.label}
                                                 </Box>
                                             )
                                         })
                                     }
                                     {
-                                        element.label === "Products" &&
-                                        productSubMenu.map((row, index) => {
+                                        element.label === "Customers" &&
+                                        customerSubMenu.map((row, index) => {
                                             return(
-                                                <Box key={index} onClick={() => handleMenuChange(row)} sx={{px : 2, py : 1, cursor : 'pointer', "&:hover" : {background : theme.palette.grey.A200}}}>
+                                                <Box key={index} onClick={() => handleMenuChange(row)} sx={{px : 5, py : 1, cursor : 'pointer', "&:hover" : {background : theme.palette.grey.A200}}}>
+                                                    {row.label}
+                                                </Box>
+                                            )
+                                        })
+                                    }
+                                    {
+                                        element.label === "Income" &&
+                                        incomeSubMenu.map((row, index) => {
+                                            return(
+                                                <Box key={index} onClick={() => handleMenuChange(row)} sx={{px : 5, py : 1, cursor : 'pointer', "&:hover" : {background : theme.palette.grey.A200}}}>
                                                     {row.label}
                                                 </Box>
                                             )

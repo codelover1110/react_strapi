@@ -4,7 +4,7 @@ import { IncomeIcon } from "../../../components/Common/SvgStatic";
 import Gladyce_Image from '../../../assets/Home/Gladyce.png';
 import Elbert_Image from '../../../assets/Home/Elbert.png';
 import Joyce_Image from '../../../assets/Home/Joyce.png';
-import StatisticsGraph from "../../../components/Common/Chart/StatisticsGraph";
+import CustomersGraph from "../../../components/Common/Chart/CustomersGraph";
 
 import WorkOutlineIcon from '@mui/icons-material/WorkOutline';
 import ErrorIcon from '@mui/icons-material/Error';
@@ -24,7 +24,6 @@ import {
 } from '@mui/material' ;
 
 import { makeStyles } from '@mui/styles' ;
-import CustomersGraph from "../../../components/Common/Chart/CustomersGraph";
 
 const useStyles = makeStyles((theme) => ({
     root : {

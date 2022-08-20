@@ -118,7 +118,9 @@ const useStyles = makeStyles((theme) => ({
         marginLeft : '30px'
     },
     dialog : {
-        
+        "& .MuiDialog-container" : {
+            alignItems : 'flex-end'
+        },
         "& .MuiDialog-paper" : {
             maxWidth : '1000px',
             background : theme.palette.common.black,
@@ -132,6 +134,11 @@ const useStyles = makeStyles((theme) => ({
                 "@media (max-width:900px)" : {
                     padding : '10px 20px'
                 }
+            },
+
+            "@media (max-width:900px)" : {
+                height : '100%',
+                margin : 0,
             }
         },
         "& .MuiButton-root" : {
@@ -333,7 +340,7 @@ const ShopProduct = () => {
                 <DialogTitle>
                     <Box className={classes.dialogTop}>
                         {
-                            !match900 &&
+                            match900 &&
                             <Box sx={{display : 'flex'}}>
                                 <Button className={classes.favorite}>
                                     <FavoriteIcon />
@@ -361,8 +368,8 @@ const ShopProduct = () => {
                         </Box>
                     </Box>
                     {
-                        match900 &&
-                        <Box sx={{display : 'flex'}}>
+                        !match900 &&
+                        <Box sx={{display : 'flex', justifyContent : 'center', alignItems : 'center'}}>
                             <Button className={classes.favorite}>
                                 <FavoriteIcon />
                                 32

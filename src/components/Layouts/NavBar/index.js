@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom';
 
 import { connect } from 'react-redux' ;
 
-import { HomeIcon, ShopIcon, LogoLightIcon, LogoDarkIcon, IncomeMenuIcon, PromoteIcon } from '../../Common/SvgStatic';
+import { HomeIcon, ShopIcon, LogoLightIcon, LogoDarkIcon, IncomeMenuIcon, PromoteIcon, CustomersIcon } from '../../Common/SvgStatic';
 import { ColorModeContext } from '../../../utils/theme';
 import { getItem, setItem } from '../../../utils/helper';
 
@@ -71,9 +71,19 @@ const menuList = [
         link : '/home',
     },
     {
+        label : 'Customers',
+        icon : CustomersIcon,
+        link : '/shop',
+    },
+    {
         label : 'Shop',
         icon : ShopIcon,
         link : '/shop',
+    },
+    {
+        label : 'Income',
+        icon : IncomeMenuIcon,
+        link : '/promote',
     },
     {
         label : 'Promote',
@@ -93,23 +103,34 @@ const homeSubMenu = [
     },
 ]
 
-const productSubMenu = [
+const customerSubMenu = [
     {
-        label : 'Dashboard',
-        link : '/product/dashboard'
+        label : 'Overview',
+        link : '/customers/overview'
     },
     {
-        label : 'Drafts',
-        link : '/product/drafts'
+        label : 'Customer list',
+        link : '/customers/list'
+    },
+]
+
+const incomeSubMenu = [
+    {
+        label : 'Earning',
+        link : '/income/earning'
     },
     {
-        label : 'Released',
-        link : '/product/released'
+        label : 'Refunds',
+        link : '/income/refunds'
     },
     {
-        label : 'Scheduled',
-        link : '/product/scheduled'
+        label : 'Payouts',
+        link : '/income/payouts'
     },
+    {
+        label : 'Statements',
+        link : '/income/statements'
+    }
 ]
 
 const NavBar = (props) => {
@@ -171,17 +192,27 @@ const NavBar = (props) => {
                                         element.label === "Home" &&
                                         homeSubMenu.map((row, index) => {
                                             return(
-                                                <Box key={index} onClick={() => handleMenuChange(row)} sx={{px : 2, py : 1, cursor : 'pointer'}}>
+                                                <Box key={index} onClick={() => handleMenuChange(row)} sx={{px : 5, py : 1, cursor : 'pointer'}}>
                                                     {match1200 && row.label}
                                                 </Box>
                                             )
                                         })
                                     }
                                     {
-                                        element.label === "Products" &&
-                                        productSubMenu.map((row, index) => {
+                                        element.label === "Customers" &&
+                                        customerSubMenu.map((row, index) => {
                                             return(
-                                                <Box key={index} onClick={() => handleMenuChange(row)} sx={{px : 2, py : 1, cursor : 'pointer'}}>
+                                                <Box key={index} onClick={() => handleMenuChange(row)} sx={{px : 5, py : 1, cursor : 'pointer'}}>
+                                                    {match1200 && row.label}
+                                                </Box>
+                                            )
+                                        })
+                                    }
+                                    {
+                                        element.label === "Income" &&
+                                        incomeSubMenu.map((row, index) => {
+                                            return(
+                                                <Box key={index} onClick={() => handleMenuChange(row)} sx={{px : 5, py : 1, cursor : 'pointer'}}>
                                                     {match1200 && row.label}
                                                 </Box>
                                             )
