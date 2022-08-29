@@ -1,0 +1,18 @@
+{
+  "kind": "collectionType",
+  "collectionName": "payments_infos",
+  "info": {
+    "singularName": "payments-info",
+    "pluralName": "payments-infos",
+    "displayName": "Payments Info"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "detail": {
+      "type": "string"
+    }
+  }
+}

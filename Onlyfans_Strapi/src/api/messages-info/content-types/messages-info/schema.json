@@ -1,0 +1,19 @@
+{
+  "kind": "collectionType",
+  "collectionName": "messages_infos",
+  "info": {
+    "singularName": "messages-info",
+    "pluralName": "messages-infos",
+    "displayName": "messages Info",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "detail": {
+      "type": "string"
+    }
+  }
+}
