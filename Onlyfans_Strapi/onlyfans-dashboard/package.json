@@ -1,0 +1,33 @@
+{
+  "name": "onlyfans-dashboard",
+  "private": true,
+  "version": "0.1.0",
+  "description": "A Strapi application",
+  "scripts": {
+    "develop": "strapi develop",
+    "start": "strapi start",
+    "build": "strapi build",
+    "strapi": "strapi"
+  },
+  "dependencies": {
+    "@strapi/plugin-graphql": "^4.3.4",
+    "@strapi/plugin-i18n": "4.3.3",
+    "@strapi/plugin-users-permissions": "4.3.3",
+    "@strapi/provider-upload-local": "^4.3.6",
+    "@strapi/strapi": "4.3.3",
+    "@strapi/utils": "^4.3.6",
+    "better-sqlite3": "7.4.6",
+    "fs-extra": "^10.1.0"
+  },
+  "author": {
+    "name": "A Strapi developer"
+  },
+  "strapi": {
+    "uuid": "71bcb8a3-2cb9-477b-afd9-dcc9d87ecb32"
+  },
+  "engines": {
+    "node": ">=12.x.x <=16.x.x",
+    "npm": ">=6.0.0"
+  },
+  "license": "MIT"
+}
