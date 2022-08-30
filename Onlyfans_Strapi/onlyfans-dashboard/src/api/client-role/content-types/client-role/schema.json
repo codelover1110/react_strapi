@@ -1,0 +1,28 @@
+{
+  "kind": "collectionType",
+  "collectionName": "client_roles",
+  "info": {
+    "singularName": "client-role",
+    "pluralName": "client-roles",
+    "displayName": "Client Roles",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "role_name": {
+      "type": "string"
+    },
+    "pages": {
+      "type": "enumeration",
+      "enum": [
+        "All Pages",
+        "Home, Customers",
+        "Home, Client, Income",
+        "Home, Promote"
+      ]
+    }
+  }
+}

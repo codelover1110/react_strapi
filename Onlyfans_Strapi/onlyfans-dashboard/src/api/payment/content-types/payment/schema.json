@@ -1,0 +1,66 @@
+{
+  "kind": "collectionType",
+  "collectionName": "payments",
+  "info": {
+    "singularName": "payment",
+    "pluralName": "payments",
+    "displayName": "Payments"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "payment_id": {
+      "type": "string"
+    },
+    "card_brand": {
+      "type": "string"
+    },
+    "card_last4": {
+      "type": "string"
+    },
+    "payoutPendingDays": {
+      "type": "string"
+    },
+    "user_avatar": {
+      "type": "string"
+    },
+    "user_username": {
+      "type": "string"
+    },
+    "user_name": {
+      "type": "string"
+    },
+    "user_id": {
+      "type": "string"
+    },
+    "user_view": {
+      "type": "string"
+    },
+    "status": {
+      "type": "string"
+    },
+    "description": {
+      "type": "text"
+    },
+    "currency": {
+      "type": "string"
+    },
+    "fee": {
+      "type": "decimal"
+    },
+    "net": {
+      "type": "decimal"
+    },
+    "created": {
+      "type": "string"
+    },
+    "vatAmount": {
+      "type": "decimal"
+    },
+    "amount": {
+      "type": "decimal"
+    }
+  }
+}

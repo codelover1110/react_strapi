@@ -1,0 +1,111 @@
+{
+  "kind": "collectionType",
+  "collectionName": "messages",
+  "info": {
+    "singularName": "message",
+    "pluralName": "messages",
+    "displayName": "Messages"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "withUser_id": {
+      "type": "string"
+    },
+    "withUser_view": {
+      "type": "string"
+    },
+    "canGoToProfile": {
+      "type": "string"
+    },
+    "payoutPendingDays": {
+      "type": "string"
+    },
+    "canSendMessage": {
+      "type": "string"
+    },
+    "canNotSendReason": {
+      "type": "string"
+    },
+    "unreadMessagesCount": {
+      "type": "string"
+    },
+    "hasUnreadTips": {
+      "type": "string"
+    },
+    "isMutedNotifications": {
+      "type": "string"
+    },
+    "lastMessage_responseType": {
+      "type": "string"
+    },
+    "lastMessage_text": {
+      "type": "text"
+    },
+    "lastMessage_lockedText": {
+      "type": "string"
+    },
+    "lastMessage_isFree": {
+      "type": "string"
+    },
+    "lastMessage_price": {
+      "type": "string"
+    },
+    "lastMessage_isMediaReady": {
+      "type": "string"
+    },
+    "lastMessage_mediaCount": {
+      "type": "string"
+    },
+    "lastMessage_isReportedByMe": {
+      "type": "string"
+    },
+    "lastMessage_fromUser_id": {
+      "type": "string"
+    },
+    "lastMessage_fromUser_view": {
+      "type": "string"
+    },
+    "lastMessage_isFromQueue": {
+      "type": "string"
+    },
+    "lastMessage_id": {
+      "type": "string"
+    },
+    "lastMessage_isOpened": {
+      "type": "string"
+    },
+    "lastMessage_isNew": {
+      "type": "string"
+    },
+    "lastMessage_createdAt": {
+      "type": "string"
+    },
+    "lastMessage_changedAt": {
+      "type": "string"
+    },
+    "lastMessage_cancelSeconds": {
+      "type": "string"
+    },
+    "lastMessage_isLiked": {
+      "type": "string"
+    },
+    "lastMessage_canPurchase": {
+      "type": "string"
+    },
+    "lastMessage_canPurchaseReason": {
+      "type": "string"
+    },
+    "lastMessage_canReport": {
+      "type": "string"
+    },
+    "lastReadMessageId": {
+      "type": "string"
+    },
+    "hasPurchasedFeed": {
+      "type": "string"
+    }
+  }
+}
