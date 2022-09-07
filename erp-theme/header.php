@@ -406,7 +406,7 @@
         <svg class="icon icon-close">	
           <use xlink:href="#icon-close"></use>
         </svg>
-      </button><a class="logo flex-shrink-0" href="<?php echo esc_url( home_url() ); ?>"><img class="logo-dark" src="<?php echo get_stylesheet_directory_uri().'/img/logo-dark.png'?>"><img class="logo-light" src="img/logo-light.png"></a>
+      </button><a class="logo flex-shrink-0" href="<?php echo esc_url( home_url() ); ?>"><img class="logo-dark" src="<?php echo get_stylesheet_directory_uri().'/img/logo-dark.png'?>"><img class="logo-light" src="<?php echo get_stylesheet_directory_uri().'/img/logo-light.png'?>"></a>
       <div class="nav nav-pills flex-column mb-auto mt-8 menu">
         <div class="nav-item mb-2"><a class="nav-link d-flex align-items-center p-3 active" href="<?php echo esc_url( home_url() ); ?>">
             <svg class="icon icon-double-home icon-item"> 
@@ -417,14 +417,15 @@
 			global $wpdb;
 			$page_title = $wp_query->post->post_title;
 			$menus = wp_get_menu_array('Main Menu'); 
-            foreach($menus as $menu){				
-				?>
+            //echo "<pre>";print_r($menus);			
+            foreach($menus as $menu){	
+ 		 ?>
         <div class="nav-item mb-2">
           <div class="nav-link d-flex align-items-center p-3 collapsed" data-bs-target="#sidebar-<?php echo $menu['title']?>-collapse" data-bs-toggle="collapse">
             <svg class="icon icon-double-diamond icon-item"> 
               <use class="fill" href="#icon-diamond-fill"></use>
               <use class="stroke" href="#icon-diamond-stroke"></use>
-            </svg><?php echo $menu['title']?>
+            </svg><a class="nav-link d-flex align-items-center p-3" href="<?php echo $menu['url']?>"><?php echo $menu['title']?></a>
             <svg class="icon icon-cheveron ms-auto arrow">	
               <use xlink:href="#icon-cheveron"></use>
             </svg>

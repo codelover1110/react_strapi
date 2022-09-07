@@ -501,7 +501,7 @@ function _defineProperty(obj, key, value) {
       data: [500, 600, 550, 450, 620, 500, 600]
     }, {
       name: "Weekly",
-      data: [300, 320, 270, 230, 280, 300, 320]
+      data: [300, 320, 270, 230, 630, 650, 690]
     }, {
       name: "Daily",
       data: [100, 80, 140, 100, 180, 100, 80]
